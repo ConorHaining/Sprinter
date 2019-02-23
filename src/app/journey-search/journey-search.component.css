@@ -1,0 +1,16 @@
+.row{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 20px 10px;
+}
+.row label{
+    flex-grow: 3;
+}
+.row input{
+    flex-shrink: 1;
+}
+.row input[type=submit]{
+    flex-shrink: 4;
+    width: 100%;
+}
