@@ -5,11 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JourneySearchComponent } from './journey-search/journey-search.component';
+import { StationBoardComponent } from './station-board/station-board.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    JourneySearchComponent
+    JourneySearchComponent,
+    StationBoardComponent
   ],
   imports: [
     BrowserModule,

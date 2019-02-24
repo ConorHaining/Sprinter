@@ -1,0 +1,85 @@
+header{
+  text-align: center;
+  background: #f2a600;
+  padding: 12px;
+  box-shadow: #5c5c5c 0 3px 5px inset;
+}
+header h2,
+header h6{
+  margin: 5px;
+  margin-top: 0;
+}
+header a{
+  margin: 5px;
+  background: #efefef;
+  padding: 5px 10px;
+  color: black;
+  border-radius: 0.25rem;
+  font-size: 0.8em;
+  text-decoration: none;
+  border: 1px solid #dddddd;
+  display: inline-block;
+  min-width: 90px;
+}
+header a:focus,
+header a:hover{
+  background: #e1e1e1;
+}
+header a:active,
+header a.active{
+  background: #cecece;
+  border: 1px solid #dddddd;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+
+tr{
+    border-bottom: 1px solid #dddddd;
+    vertical-align: top;
+}
+tr:hover,
+tr:focus{
+    background: #f5f5f5;
+}
+
+td{
+    padding: 10px 5px;
+    font-size: 0.8em;
+}
+td.direction{
+  font-size: 0.5em;
+  padding: 12px 0;
+}
+td.location{
+  font-weight: bold;
+}
+td.operator{
+  font-size: 0.6em;
+  text-align: right;
+  padding: 12px 5px;
+}
+td.location small{
+  font-size: 0.6em;
+  font-weight: normal;
+  line-height: 8px;
+  display: inline-block;
+}
+td.platform{
+  text-align: right;
+}
+td del{
+    color: #770000;
+    font-weight: bold;
+    font-size: 0.75em;
+
+}
+tr.cancelled{
+    background: #faeceb;
+    font-weight: bold;
+    color: #770000;
+    text-decoration: line-through;
+}

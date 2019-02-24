@@ -26,7 +26,7 @@ describe('JourneySearchComponent', () => {
   });
 
   describe('Initialisation Values', () => {
-    Date.prototype.getDate = () => {return 23;}
+    Date.prototype.getDate = () => {return 23  ;}
     Date.prototype.getMonth = () => {return 1;}
     Date.prototype.getFullYear = () => {return 2019;}
     Date.prototype.getHours = () => {return 12;}
