@@ -57,7 +57,7 @@ td.direction{
 td.location{
   font-weight: bold;
 }
-spantd.operator{
+td.operator{
   font-size: 0.6em;
   text-align: right;
   padding: 12px 5px;
