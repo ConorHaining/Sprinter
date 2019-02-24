@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { JourneySearchComponent } from './journey-search/journey-search.component';
+import { JourneySearchPageComponent } from './journey-search-page/journey-search-page.component';
 import { StationBoardPageComponent } from './station-board-page/station-board-page.component';
 
 const routes: Routes = [
-  {path: '', component: JourneySearchComponent},
+  {path: '', component: JourneySearchPageComponent},
   {path: 'station/:crs/:direction', component: StationBoardPageComponent},
 ];
 

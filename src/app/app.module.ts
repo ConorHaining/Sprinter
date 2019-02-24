@@ -8,6 +8,7 @@ import { JourneySearchComponent } from './journey-search/journey-search.componen
 import { StationBoardComponent } from './station-board/station-board.component';
 import { StationBoardPageComponent } from './station-board-page/station-board-page.component';
 import { HeaderComponent } from './header/header.component';
+import { JourneySearchPageComponent } from './journey-search-page/journey-search-page.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HeaderComponent } from './header/header.component';
     JourneySearchComponent,
     StationBoardComponent,
     StationBoardPageComponent,
-    HeaderComponent
+    HeaderComponent,
+    JourneySearchPageComponent
   ],
   imports: [
     BrowserModule,

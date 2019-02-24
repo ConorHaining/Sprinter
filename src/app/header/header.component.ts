@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   private _loading: boolean = true;
-  stopAnimation: boolean = false;
+  stopAnimation: boolean = true;
   get loading() { return this._loading; }
   @Input() set loading(l) {
     this._loading = l;
