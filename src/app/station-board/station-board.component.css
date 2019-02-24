@@ -57,7 +57,7 @@ td.direction{
 td.location{
   font-weight: bold;
 }
-td.operator{
+spantd.operator{
   font-size: 0.6em;
   text-align: right;
   padding: 12px 5px;
@@ -81,4 +81,12 @@ tr.cancelled{
   background: #faeceb;
   font-weight: bold;
   color: #770000;
+}
+.loading td span{
+  background: #e0e0e0;
+  color: #e0e0e0;
+  text-decoration: none;
+}
+.loading td del{
+  text-decoration: none;
 }
