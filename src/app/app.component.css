@@ -1,7 +1,6 @@
 header{
     background: #efefef;
     padding: 8px;
-    margin-bottom: 5px;
 }
 header svg {
     display: block;
@@ -13,7 +12,6 @@ header svg {
 footer{
     background: #efefef;
     padding: 8px;
-    margin-top: 5px;
 }
 footer p{
     font-size: 0.5em;
