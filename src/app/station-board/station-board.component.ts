@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BoardItem } from './BoardItem';
 import { BusType } from './BusType';
 
@@ -11,26 +12,56 @@ export class StationBoardComponent implements OnInit {
 
   stationBoard: BoardItem[];
 
-  constructor() { }
+  crs: string;
+  direction: string;
+  year: string;
+  month: string;
+  day: string;
+  time: string;
+  
+  notion: string;
+
+  constructor(private route:ActivatedRoute) { }
 
   ngOnInit() {
 
-    this.stationBoard = [
-      new BoardItem('Aberdeen', '4', '20:45', 'Scotrail'),
-      new BoardItem('Arboarth', '4', '21:03', 'Scotrail'),
-      new BoardItem('Edinburgh', '2', '21:05', 'Scotrail'),
-      new BoardItem('Aberdeen', '4', '21:09', 'London North Eastern Railway', false, '21:45'),
-      new BoardItem('Aberdeen', '4', '21:40', 'Cross Country', true),
-      new BoardItem('Carnoustie', 'BUS', '21:40', 'Scotrail'),
-      new BoardItem('Stonehaven', 'BUS', '21:40', 'Scotrail'),
-      new BoardItem('An Island', 'BUS', '21:40', 'Scotrail'),
+    this.route.params.subscribe(params => {
+      this.crs = params['crs'];
+      this.direction = params['direction'];
+      if (this.direction == 'departures') {
+        this.notion = 'to';
+      } else if (this.direction == 'arrivals') {
+        this.notion = 'from';
+      }
+
+
+    if (this.direction == 'departures') {
+      this.stationBoard = [
+      new BoardItem('Scotrail', 'Edinburgh', '1N', '14:57', '14:57'),
+      new BoardItem('Scotrail', 'Arbroath', '4', '15:12', '15:13'),
+      new BoardItem('London North Eastern Railway', 'Aberdeen', '4', '15:23', null, true),
+      new BoardItem('Scotrail', 'Carnoustie', '4', '15:12'),
+      new BoardItem('Scotrail', 'Carnoustie', '4', '15:12'),
+      new BoardItem('Scotrail', 'Carnoustie', '4', '15:12'),
     ];
+    } else {
+      this.stationBoard = [
+      new BoardItem('Scotrail', 'Aberdeen', '1N', '14:56', '14:56'),
+      new BoardItem('Scotrail', 'Edinburgh', '4', '15:13', '15:13'),
+      new BoardItem('London North Eastern Railway', 'London Kings Cross', '4', '15:23', null, true),
+      new BoardItem('Scotrail', 'Leuchers', '4', '15:12'),
+      new BoardItem('Scotrail', 'Leuchers', '4', '15:12'),
+      new BoardItem('Scotrail', 'Leuchers', '4', '15:12'),
+    ];
+    }
 
-    this.stationBoard[5].busType = BusType.REPLACEMENT;
-    this.stationBoard[6].busType = BusType.WTT;
-    this.stationBoard[7].busType = BusType.SHIP;
+    this.stationBoard[3].busType = BusType.REPLACEMENT;
+    this.stationBoard[4].busType = BusType.WTT;
+    this.stationBoard[5].busType = BusType.SHIP;
 
+    });
 
   }
+
 
 }

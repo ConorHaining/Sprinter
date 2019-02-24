@@ -2,16 +2,16 @@ import { BusType } from './BusType';
 
 export class BoardItem {
     constructor(
+        public operator: string,
         public location: string,
         public platform: string,
-        public publicArrival: string,
-        public operator: string,
+        public publicTime: string,
+        public predictedTime: string = null, 
         public cancelled: boolean = false,
-        public predictedArrival?: string,
     ) {}
 
     get isLate(){
-        return this.publicArrival != this.predictedArrival && this.predictedArrival;
+        return this.publicTime != this.predictedTime && this.predictedTime;
     }
 
     get isBus(){

@@ -1,5 +1,5 @@
 export enum BusType {
   WTT = 'Scheduled Bus Service',
-  REPLACEMENT = 'Bus Replacement Serivce',
+  REPLACEMENT = 'Replacement Bus Serivce',
   SHIP = 'Scheduled Ship Service'
 }

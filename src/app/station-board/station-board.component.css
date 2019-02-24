@@ -32,18 +32,18 @@ header a.active{
 }
 
 table{
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9em;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
 }
 
 tr{
-    border-bottom: 1px solid #dddddd;
-    vertical-align: top;
+  border-bottom: 1px solid #dddddd;
+  vertical-align: top;
 }
 tr:hover,
 tr:focus{
-    background: #f5f5f5;
+  background: #f5f5f5;
 }
 
 td{
@@ -72,14 +72,13 @@ td.platform{
   text-align: right;
 }
 td del{
-    color: #770000;
-    font-weight: bold;
-    font-size: 0.75em;
-
+  color: #770000;
+  font-weight: bold;
+  font-size: 0.75em;
+  margin-left: 1px;
 }
 tr.cancelled{
-    background: #faeceb;
-    font-weight: bold;
-    color: #770000;
-    text-decoration: line-through;
+  background: #faeceb;
+  font-weight: bold;
+  color: #770000;
 }
