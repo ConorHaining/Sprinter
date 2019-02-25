@@ -11,6 +11,8 @@ import { HeaderComponent } from './header/header.component';
 import { JourneySearchPageComponent } from './journey-search-page/journey-search-page.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { JourneyPageComponent } from './journey-page/journey-page.component';
+import { JourneyComponent } from './journey/journey.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     StationBoardPageComponent,
     HeaderComponent,
     JourneySearchPageComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    JourneyPageComponent,
+    JourneyComponent
   ],
   imports: [
     BrowserModule,

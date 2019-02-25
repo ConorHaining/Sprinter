@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { JourneySearchPageComponent } from './journey-search-page/journey-search-page.component';
 import { StationBoardPageComponent } from './station-board-page/station-board-page.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
+import { JourneyPageComponent } from './journey-page/journey-page.component';
 
 const routes: Routes = [
   {path: '', component: JourneySearchPageComponent},
   {path: 'station/:crs/:direction', component: StationBoardPageComponent},
+  {path: 'train/:uid/:year/:month/:day', component: JourneyPageComponent},
   {path: '**', component: NotFoundPageComponent},
 ];
 
