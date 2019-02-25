@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BoardItem } from './station-board/BoardItem';
 import { BusType } from './station-board/BusType';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StationBoardService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getLoadingBoard(): BoardItem[] {
     const board = [
@@ -30,6 +32,19 @@ export class StationBoardService {
     }
 
     return board;
+  }
+
+  getStationBoard(crs, direction): Observable<BoardItem[]> {
+    const url = `${environment}/station/${crs}/${direction}`;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'my-auth-token'
+      })
+    };
+
+    return this.http.get(url, httpOptions);
   }
 
 }

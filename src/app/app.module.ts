@@ -10,6 +10,7 @@ import { StationBoardPageComponent } from './station-board-page/station-board-pa
 import { HeaderComponent } from './header/header.component';
 import { JourneySearchPageComponent } from './journey-search-page/journey-search-page.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

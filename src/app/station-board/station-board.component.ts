@@ -46,6 +46,15 @@ export class StationBoardComponent implements OnInit {
         this.notion = 'from';
       }
 
+      this.board.getStationBoard(this.crs, this.direction)
+        .subscribe(
+          (board: BoardItem[]) => {
+            console.log(board);
+          },
+          (err) => {
+            console.error(err);
+          });
+
     });
 
   }
