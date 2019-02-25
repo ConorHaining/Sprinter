@@ -44,7 +44,7 @@ export class StationBoardService {
       })
     };
 
-    return this.http.get(url, httpOptions);
+    return this.http.get<BoardItem[]>(url, httpOptions);
   }
 
 }
