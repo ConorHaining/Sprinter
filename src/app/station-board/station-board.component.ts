@@ -16,10 +16,10 @@ export class StationBoardComponent implements OnInit {
 
   crs: string;
   direction: string;
-  year: string;
-  month: string;
-  day: string;
-  time: string;
+  year: string = '2019';
+  month: string = '02';
+  day: string = '25';
+  time: string = '15:15';
 
   notion: string;
 

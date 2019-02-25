@@ -14,14 +14,14 @@ export class StationBoardService {
 
   getLoadingBoard(): BoardItem[] {
     const board = [
-      new BoardItem('Scotrail', 'Aberdeen', '1N', '14:56', '14:56'),
-      new BoardItem('Scotrail', 'Edinburgh', '4', '15:13', '15:13'),
-      new BoardItem('London North Eastern Railway', 'London Kings Cross', '4', '15:23', null),
-      new BoardItem('Scotrail', 'Leuchers', '4', '15:12'),
-      new BoardItem('Scotrail', 'Leuchers', '4', '15:12', '15:14'),
-      new BoardItem('Scotrail', 'Leuchers', '4', '15:12'),
-      new BoardItem('Scotrail', 'Glasgow Queen Street', '4', '15:12'),
-      new BoardItem('Caledonian Sleeper', 'London Euston', '4', '15:12', '15:13'),
+      new BoardItem('U12345', 'Scotrail', 'Aberdeen', '1N', '14:56', '14:56'),
+      new BoardItem('U12345', 'Scotrail', 'Edinburgh', '4', '15:13', '15:13'),
+      new BoardItem('U12345', 'London North Eastern Railway', 'London Kings Cross', '4', '15:23', null),
+      new BoardItem('U12345', 'Scotrail', 'Leuchers', '4', '15:12'),
+      new BoardItem('U12345', 'Scotrail', 'Leuchers', '4', '15:12', '15:14'),
+      new BoardItem('U12345', 'Scotrail', 'Leuchers', '4', '15:12'),
+      new BoardItem('U12345', 'Scotrail', 'Glasgow Queen Street', '4', '15:12'),
+      new BoardItem('U12345', 'Caledonian Sleeper', 'London Euston', '4', '15:12', '15:13'),
     ];
 
     board[3].busType = BusType.REPLACEMENT;

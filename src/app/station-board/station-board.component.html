@@ -7,24 +7,27 @@
   </header>
   <table *ngIf="stationBoard.length > 0" tabindex="0" [class.loading]="_loading">
     <tbody>
-      <tr *ngFor="let item of stationBoard; index as i" [class.cancelled]="item.cancelled" tabindex="{{i + 1}}">
-        <td class="time">
-          <span *ngIf="item.cancelled">Cancelled</span>
-          <div *ngIf="item.isLate"><span>{{item.predictedTime}}</span></div>
-          <div *ngIf="!item.isLate"><span>{{item.publicTime}}</span></div>
-          <del *ngIf="item.isLate"><span>{{item.publicTime}}</span></del>
-        </td>
-        <td class="direction">
-          <span>{{notion}}</span>
-        </td>
-        <td class="location">
-          <div><span>{{item.location}}</span></div>
-          <small *ngIf="item.isBus"><span>{{item.busType}}</span></small>
-        </td>
-        <td class="operator"><span>{{item.operator}}</span></td>
-        <td class="platform" *ngIf="item.isBus"><span>BUS</span></td>
-        <td class="platform" *ngIf="!item.isBus"><span>Platform&nbsp;{{item.platform}}</span></td>
-      </tr>
+      <a href="#" [routerLink]="['/train', item.uid, year, month, day]" *ngFor="let item of stationBoard; index as i" [class.cancelled]="item.cancelled" tabindex="{{i + 1}}">
+          <td class="time">
+            <span *ngIf="item.cancelled">Cancelled</span>
+            <div *ngIf="item.isLate"><span>{{item.predictedTime}}</span></div>
+            <div *ngIf="!item.isLate"><span>{{item.publicTime}}</span></div>
+            <del *ngIf="item.isLate"><span>{{item.publicTime}}</span></del>
+          </td>
+          <td class="direction">
+            <span>{{notion}}</span>
+          </td>
+          <td class="location">
+            <div><span>{{item.location}}</span></div>
+            <small *ngIf="item.isBus"><span>{{item.busType}}</span></small>
+          </td>
+          <td class="operator"><span>{{item.operator}}</span></td>
+          <td class="platform" *ngIf="item.isBus"><span>BUS</span></td>
+          <td class="platform" *ngIf="!item.isBus"><span>Platform&nbsp;{{item.platform}}</span></td>
+      </a>
+      <!-- <tr >
+
+      </tr> -->
     </tbody>
   </table>
 </main>
