@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BoardItem } from './BoardItem';
-import { BusType } from './BusType';
+import { StationBoardService } from '../station-board.service';
 
 @Component({
   selector: 'app-station-board',
@@ -10,14 +10,7 @@ import { BusType } from './BusType';
 })
 export class StationBoardComponent implements OnInit {
 
-  stationBoard: BoardItem[] = [
-    new BoardItem('Scotrail', 'Edinburgh', '1N', '14:57', '14:57'),
-    new BoardItem('Scotrail', 'Edinburgh', '1N', '14:57', '14:57'),
-    new BoardItem('Scotrail', 'Edinburgh', '1N', '14:57', '14:57'),
-    new BoardItem('Scotrail', 'Edinburgh', '1N', '14:57', '14:57'),
-    new BoardItem('Scotrail', 'Edinburgh', '1N', '14:57', '14:57'),
-    new BoardItem('Scotrail', 'Edinburgh', '1N', '14:57', '14:57'),
-  ];
+  stationBoard: BoardItem[] = [];
   @Output() loading = new EventEmitter<boolean>();
   _loading: boolean;
 
@@ -30,69 +23,27 @@ export class StationBoardComponent implements OnInit {
 
   notion: string;
 
-  constructor(private route:ActivatedRoute) { }
+  constructor(private route:ActivatedRoute, private board:StationBoardService) { }
 
   private triggerLoading(isLoading: boolean){
     this.loading.emit(isLoading);
     this._loading = isLoading;
 
-    this.stationBoard = [
-      new BoardItem('Scotrail', 'Aberdeen', '1N', '14:56', '14:56'),
-      new BoardItem('Scotrail', 'Edinburgh', '4', '15:13', '15:13'),
-      new BoardItem('London North Eastern Railway', 'London Kings Cross', '4', '15:23', null),
-      new BoardItem('Scotrail', 'Leuchers', '4', '15:12'),
-      new BoardItem('Scotrail', 'Leuchers', '4', '15:12', '15:14'),
-      new BoardItem('Scotrail', 'Leuchers', '4', '15:12'),
-    ];
-
-    this.stationBoard[3].busType = BusType.REPLACEMENT;
+    this.stationBoard = this.board.getLoadingBoard();
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.crs = params['crs'];
       this.direction = params['direction'];
-      if (this.direction == 'departures') {
+
+      this.triggerLoading(true);
+      setTimeout(() => this.triggerLoading(false), 3000);
+
+      if (this.direction === 'departures') {
         this.notion = 'to';
-      } else if (this.direction == 'arrivals') {
+      } else if (this.direction === 'arrivals') {
         this.notion = 'from';
-      }
-
-      if (this.direction == 'departures') {
-        this.triggerLoading(true);
-        setTimeout(() => {
-          this.triggerLoading(false);
-          this.stationBoard = [
-            new BoardItem('Scotrail', 'Edinburgh', '1N', '14:57', '14:57'),
-            new BoardItem('Scotrail', 'Arbroath', '4', '15:12', '15:13'),
-            new BoardItem('London North Eastern Railway', 'Aberdeen', '4', '15:23', null, true),
-            new BoardItem('Scotrail', 'Carnoustie', '4', '15:12'),
-            new BoardItem('Scotrail', 'Carnoustie', '4', '15:12'),
-            new BoardItem('Scotrail', 'Carnoustie', '4', '15:12'),
-            ];
-
-            this.stationBoard[3].busType = BusType.REPLACEMENT;
-            this.stationBoard[4].busType = BusType.WTT;
-            this.stationBoard[5].busType = BusType.SHIP;
-        }, 600);
-      } else {
-        this.triggerLoading(true);
-        setTimeout(() => {
-          this.triggerLoading(false);
-          this.stationBoard = [
-            new BoardItem('Scotrail', 'Aberdeen', '1N', '14:56', '14:56'),
-            new BoardItem('Scotrail', 'Edinburgh', '4', '15:13', '15:13'),
-            new BoardItem('London North Eastern Railway', 'London Kings Cross', '4', '15:23', null, true),
-            new BoardItem('Scotrail', 'Leuchers', '4', '15:12'),
-            new BoardItem('Scotrail', 'Leuchers', '4', '15:12'),
-            new BoardItem('Scotrail', 'Leuchers', '4', '15:12'),
-          ];
-
-          this.stationBoard[3].busType = BusType.REPLACEMENT;
-          this.stationBoard[4].busType = BusType.WTT;
-          this.stationBoard[5].busType = BusType.SHIP;
-        }, 6000);
-
       }
 
     });
