@@ -1,3 +1,39 @@
-<p>
-  journey works!
-</p>
+<main>
+  <header>
+      <h2>1916 Aberdeen to Edinburgh</h2>
+      <h3>Scotrail Service</h3>
+  </header>
+  <section>
+    <table class="loading">
+      <thead>
+        <tr>
+          <td colspan="4"></td>
+          <td colspan="2">Timetable</td>
+          <td colspan="3">Realtime</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Location</td>
+          <td>Platform</td>
+          <td>Arrival</td>
+          <td>Departure</td>
+          <td>Arrival</td>
+          <td>Departure</td>
+          <td>Status</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of schedule.locations; first as isFirst; last as isLast">
+          <td class="progress" [class.origin]="isFirst" [class.destination]="isLast"></td>
+          <td class="location"><a href=""><span>{{record.location}}</span></a></td>
+          <td><span>{{record.platform}}</span></td>
+          <td><span>{{record.publicArrival}}</span></td>
+          <td><span>{{record.publicDeparture}}</span></td>
+          <td><span>{{record.predictedArrival}}</span></td>
+          <td><span>{{record.predictedDeparture}}</span></td>
+          <td><span>{{record.status}}</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
