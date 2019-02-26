@@ -17,7 +17,7 @@ margin-top: 5px;
 header.loading svg{
 animation-name: loadingTrain;
 animation-duration: 2s;
-animation-timing-function: ease-in-out;
+animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 animation-iteration-count: infinite;
 animation-delay: 1s;
 }
@@ -27,10 +27,10 @@ animation-delay: 1s;
   transform: translate(0px, 0px);
   }
 45% {
-  transform: translate(-400px, 0px);
+  transform: translate(-300px, 0px);
   }
 46% {
-  transform: translate(400px, 0px);
+  transform: translate(300px, 0px);
   }
 95% {
   transform: translate(0px, 0px);
