@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JourneyPageComponent implements OnInit {
 
+  loading: boolean = true;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onLoading(event){
+    this.loading = event;
   }
 
 }

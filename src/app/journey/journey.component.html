@@ -4,34 +4,38 @@
       <h3>Scotrail Service</h3>
   </header>
   <section>
-    <table class="loading">
+    <table [class.loading]="_loading">
       <thead>
         <tr>
-          <td colspan="4"></td>
-          <td colspan="2">Timetable</td>
-          <td colspan="3">Realtime</td>
+          <td colspan="3" class="border-none"></td>
+          <td colspan="2" class="border-left wwt">Timetable</td>
+          <td colspan="3" class="border-left">Realtime</td>
         </tr>
         <tr>
-          <td></td>
+          <td class="border-none"></td>
           <td>Location</td>
           <td>Platform</td>
-          <td>Arrival</td>
-          <td>Departure</td>
-          <td>Arrival</td>
-          <td>Departure</td>
+          <td class="border-left wwt"><abbr title="Arrivals">Arr</abbr></td>
+          <td class="wwt"><abbr title="Departures">Dep</abbr></td>
+          <td class="border-left"><abbr title="Arrivals">Arr</abbr></td>
+          <td><abbr title="Departures">Dep</abbr></td>
           <td>Status</td>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let record of schedule.locations; first as isFirst; last as isLast">
+        <tr *ngFor="let record of schedule.locations; first as isFirst; last as isLast"
+          [class.calledAt]="!record.calledAt"
+          [class.late]="record.isLate"
+          [class.early]="record.isEarly"
+          >
           <td class="progress" [class.origin]="isFirst" [class.destination]="isLast"></td>
           <td class="location"><a href=""><span>{{record.location}}</span></a></td>
           <td><span>{{record.platform}}</span></td>
-          <td><span>{{record.publicArrival}}</span></td>
-          <td><span>{{record.publicDeparture}}</span></td>
-          <td><span>{{record.predictedArrival}}</span></td>
-          <td><span>{{record.predictedDeparture}}</span></td>
-          <td><span>{{record.status}}</span></td>
+          <td class="border-left wwt"><span>{{record.publicArrival}}</span></td>
+          <td class="wwt"><span>{{record.publicDeparture}}</span></td>
+          <td class="border-left realtime"><span>{{record.predictedArrival}}</span></td>
+          <td class="realtime"><span>{{record.predictedDeparture}}</span></td>
+          <td class="realtime"><span *ngIf="record.calledAt" class="status">{{record.status}}</span></td>
         </tr>
       </tbody>
     </table>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Schedule } from './Schedule';
 import { LocationRecords } from "./LocationRecords";
 
@@ -10,10 +10,14 @@ import { LocationRecords } from "./LocationRecords";
 export class JourneyComponent implements OnInit {
 
   schedule: Schedule;
+  @Output() loading = new EventEmitter<boolean>();
+  _loading: boolean;
 
   constructor() { }
 
   ngOnInit() {
+    this.triggerLoading(true);
+    setTimeout(() => this.triggerLoading(false), 3000);
     this.schedule = new Schedule();
     this.schedule.locations = [
       new LocationRecords('Aberdeen', '3', null, '1916', null, '1916', true),
@@ -26,6 +30,11 @@ export class JourneyComponent implements OnInit {
       new LocationRecords('Haymarket', '1', '2129', '2130', '2136', '2137', false),
       new LocationRecords('Edinburgh', '1', '2136', null, '2141', null, false),
     ];
+  }
+
+  private triggerLoading(isLoading: boolean){
+    this.loading.emit(isLoading);
+    this._loading = isLoading;
   }
 
 }

@@ -16,7 +16,6 @@ export class StationBoardPageComponent implements OnInit {
 
   onLoading(event){
     this.loading = event;
-    console.log(event);
   }
 
 }

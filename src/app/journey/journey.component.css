@@ -29,16 +29,18 @@ header a.active{
   background: #cecece;
   border: 1px solid #dddddd;
 }
-
+section{
+  margin: 10px;
+}
 table{
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 table tr{
   width: 100%;
   vertical-align: middle;
-  height: 50px;
+  height: 40px;
 }
 table thead th{
   vertical-align: bottom;
@@ -49,7 +51,7 @@ tbody tr:focus{
 }
 
 td{
-  padding: 10px 5px;
+  padding: 5px;
   text-align: right;
   border-bottom: 1px solid #dddddd;
 }
@@ -60,6 +62,31 @@ td{
 
 td.location{
   text-align: left;
+}
+td.border-left{
+  border-left: 1px solid #dddddd;
+}
+td.border-none{
+  border: none;
+}
+td.realtime{
+  font-weight: bold;
+}
+.late .status{
+  color: red;
+}
+.early .status{
+  color: green;
+}
+.calledAt td.realtime{
+  font-weight: normal;
+  font-style: italic;
+}
+@media only screen
+and (max-device-width : 599px) {
+  .wwt{
+    display: none;
+  }
 }
 
 /**
