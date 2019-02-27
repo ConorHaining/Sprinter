@@ -92,6 +92,24 @@ and (max-device-width : 599px) {
 /**
  *  Progress Map
  */
+#progressMapPreload .origin{
+  background-image: url('/assets/progress_map.origin.svg');
+  background-position: -9999px;
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
+#progressMapPreload .intermediate{
+  background-image: url('/assets/progress_map.intermediate.svg');
+  background-position: -9999px;
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
+#progressMapPreload .destination{
+  background-image: url('/assets/progress_map.destination.svg');
+  background-position: -9999px;
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
 td.progress{
   background-image: url('/assets/progress_map.intermediate.svg');
   background-position: center;
