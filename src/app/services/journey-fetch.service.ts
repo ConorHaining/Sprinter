@@ -1,25 +1,17 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Schedule } from './Schedule';
-import { LocationRecords } from "./LocationRecords";
+import { Injectable } from '@angular/core';
+import { Schedule } from '../models/Schedule';
+import { LocationRecords } from '../models/LocationRecords';
 
-@Component({
-  selector: 'app-journey',
-  templateUrl: './journey.component.html',
-  styleUrls: ['./journey.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class JourneyComponent implements OnInit {
-
-  schedule: Schedule;
-  @Output() loading = new EventEmitter<boolean>();
-  _loading: boolean;
+export class JourneyFetchService {
 
   constructor() { }
 
-  ngOnInit() {
-    this.triggerLoading(true);
-    setTimeout(() => this.triggerLoading(false), 3000);
-    this.schedule = new Schedule();
-    this.schedule.locations = [
+  getLoadingJourney(): Schedule{
+    let schedule = new Schedule();
+    schedule.locations = [
       new LocationRecords('Aberdeen', '3', null, '1916', null, '1916', true),
       new LocationRecords('Stonehaven', '', '1931', '1935', '1931', '1935', true),
       new LocationRecords('Montrose', '1', '1954', '1955', '1953', '1954', true),
@@ -30,11 +22,7 @@ export class JourneyComponent implements OnInit {
       new LocationRecords('Haymarket', '1', '2129', '2130', '2136', '2137', false),
       new LocationRecords('Edinburgh', '1', '2136', null, '2141', null, false),
     ];
-  }
 
-  private triggerLoading(isLoading: boolean){
-    this.loading.emit(isLoading);
-    this._loading = isLoading;
+    return schedule;
   }
-
 }

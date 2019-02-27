@@ -1,4 +1,4 @@
-import { LocationRecords } from "./LocationRecords";
+import { LocationRecords } from './LocationRecords';
 export class Schedule{
   locations: LocationRecords[];
 }

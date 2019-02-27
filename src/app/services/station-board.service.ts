@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BoardItem } from './station-board/BoardItem';
-import { BusType } from './station-board/BusType';
+import { BoardItem } from '../models/BoardItem';
+import { BusType } from '../models/BusType';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 

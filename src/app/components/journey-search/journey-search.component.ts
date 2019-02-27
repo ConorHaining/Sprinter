@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JourneySearchModel } from './JourneySearchModel';
+import { JourneySearchModel } from '../../models/JourneySearchModel';
 
 @Component({
   selector: 'app-journey-search',
@@ -9,7 +9,7 @@ import { JourneySearchModel } from './JourneySearchModel';
 export class JourneySearchComponent implements OnInit {
 
   search: JourneySearchModel = new JourneySearchModel('', this.constructCurrentTime(), this.constructCurrentDate());
-  
+
   constructor() { }
 
   ngOnInit() {

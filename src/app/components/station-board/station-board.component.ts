@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BoardItem } from './BoardItem';
-import { StationBoardService } from '../station-board.service';
+import { BoardItem } from '../../models/BoardItem';
+import { StationBoardService } from '../../services/station-board.service';
 
 @Component({
   selector: 'app-station-board',
