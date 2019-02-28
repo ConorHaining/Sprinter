@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { JourneySearchModel } from '../../models/JourneySearchModel';
 import { StationsService } from 'src/app/services/stations.service';
 import { Station } from 'src/app/models/Station';
@@ -19,7 +20,7 @@ export class JourneySearchComponent implements OnInit {
   possibleStations: Station[] = [];
   tabNum: number = 0;
 
-  constructor(private station: StationsService) {}
+  constructor(private station: StationsService, private router: Router) {}
 
   ngOnInit() {
     this.station.loadStations();
@@ -45,6 +46,7 @@ export class JourneySearchComponent implements OnInit {
   onKeyUp(event){
     const value = event.target.value;
     this.search.station.name = value;
+    this.tabNum =  0;
     if (value.length > 2){
       this.possibleStations = this.station.findByName(value);
     } else {
@@ -62,6 +64,7 @@ export class JourneySearchComponent implements OnInit {
 
     if(this.search.station.crs) {
       console.log(this.search);
+      this.router.navigate(['/station', this.search.station.crs, 'departures']);
     } else {
       console.error('Invalid input');
     }
@@ -82,15 +85,20 @@ export class JourneySearchComponent implements OnInit {
       }
 
       if (this.tabNum > 0){
-        let listItem = document.querySelector('#autocomplete ul').children.item(this.tabNum - 1);
+        let listItem = document.querySelector('#autocomplete ul').children.item(this.tabNum - 1) as HTMLElement;
         listItem.focus();
       } else {
-        const input = document.querySelector('input#station');
+        const input = document.querySelector('input#station') as HTMLElement;
         input.focus();
       }
 
+    } else if(event.keyCode === 13) {
+      let listItem = document.querySelector('#autocomplete ul').children.item(this.tabNum - 1) as HTMLElement;
+      const station = listItem.getAttribute('data-station');
+      this.search.station = Station.fromJSON(station);
+      this.possibleStations = [];
     } else {
-      const input = document.querySelector('input#station');
+      const input = document.querySelector('input#station') as HTMLElement;
       input.focus();
     }
 

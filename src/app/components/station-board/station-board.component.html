@@ -1,6 +1,6 @@
 <main role="main">
   <header>
-    <h2>{{crs}}</h2>
+    <h2>{{station.name}}</h2>
     <h6>Live {{direction | titlecase}}</h6>
     <a href="#" [class.active]="direction == 'departures'" [routerLink]="['/station', crs, 'departures']">Departures</a>
     <a href="#" [class.active]="direction == 'arrivals'" [routerLink]="['/station', crs, 'arrivals']">Arrivals</a>

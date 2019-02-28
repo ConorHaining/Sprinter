@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BoardItem } from '../../models/BoardItem';
 import { StationBoardService } from '../../services/station-board.service';
+import { StationsService } from 'src/app/services/stations.service';
+import { Station } from 'src/app/models/Station';
 
 @Component({
   selector: 'app-station-board',
@@ -14,6 +16,8 @@ export class StationBoardComponent implements OnInit {
   @Output() loading = new EventEmitter<boolean>();
   _loading: boolean;
 
+  station: Station = new Station(null, null, null);
+
   crs: string;
   direction: string;
   year: string = '2019';
@@ -23,7 +27,11 @@ export class StationBoardComponent implements OnInit {
 
   notion: string;
 
-  constructor(private route:ActivatedRoute, private board:StationBoardService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private board: StationBoardService,
+    private stationService: StationsService
+  ) { }
 
   private triggerLoading(isLoading: boolean){
     this.loading.emit(isLoading);
@@ -36,6 +44,7 @@ export class StationBoardComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.crs = params['crs'];
       this.direction = params['direction'];
+      this.station = this.stationService.getByCrs(this.crs);
 
       this.triggerLoading(true);
       setTimeout(() => this.triggerLoading(false), 3000);

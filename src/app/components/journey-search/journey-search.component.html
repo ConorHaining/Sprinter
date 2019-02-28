@@ -3,7 +3,7 @@
     <div (keydown)="onKeyDown($event)">
       <div class="row">
         <label for="station">Departing from: </label>
-        <input required tabindex="1" type="text" id="station" name="station" [ngModel]="search.station.name" [value]="search.station.name" (input)="onKeyUp($event)">
+        <input required tabindex="1" autocomplete="false" type="text" id="station" name="station" [ngModel]="search.station.name" [value]="search.station.name" (input)="onKeyUp($event)">
       </div>
       <div class="row" id="autocomplete">
         <ul #autoCompleteList>
