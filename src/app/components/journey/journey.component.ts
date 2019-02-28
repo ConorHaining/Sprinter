@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Schedule } from './Schedule';
+import { Schedule } from '../../models/Schedule';
 import { JourneyFetchService } from '../../services/journey-fetch.service';
 
 @Component({
