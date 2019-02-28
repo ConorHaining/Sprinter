@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JourneySearchModel } from '../../models/JourneySearchModel';
 import { StationsService } from 'src/app/services/stations.service';
+import { Station } from 'src/app/models/Station';
 
 @Component({
   selector: 'app-journey-search',
@@ -9,7 +10,14 @@ import { StationsService } from 'src/app/services/stations.service';
 })
 export class JourneySearchComponent implements OnInit {
 
-  search: JourneySearchModel = new JourneySearchModel('', this.constructCurrentTime(), this.constructCurrentDate());
+  search: JourneySearchModel = new JourneySearchModel(
+                                new Station(null, null, null),
+                                this.constructCurrentTime(),
+                                this.constructCurrentDate()
+                                );
+
+  possibleStations: Station[] = [];
+  tabNum: number = 0;
 
   constructor(private station: StationsService) {}
 
@@ -32,6 +40,60 @@ export class JourneySearchComponent implements OnInit {
     const year = String(now.getFullYear()).padStart(4, '0');
 
     return `${year}-${month}-${date}`;
+  }
+
+  onKeyUp(event){
+    const value = event.target.value;
+    this.search.station.name = value;
+    if (value.length > 2){
+      this.possibleStations = this.station.findByName(value);
+    } else {
+      this.possibleStations = [];
+    }
+  }
+
+  onStationSelect(event){
+    const station = event.target.getAttribute('data-station');
+    this.search.station = Station.fromJSON(station);
+    this.possibleStations = [];
+  }
+
+  onSearch() {
+
+    if(this.search.station.crs) {
+      console.log(this.search);
+    } else {
+      console.error('Invalid input');
+    }
+  }
+
+  onKeyDown(event){
+    if (event.keyCode === 38 || event.keyCode == 40) {
+
+      switch (event.keyCode){
+        case 38:
+          this.tabNum--;
+          this.tabNum = Math.max(0, this.tabNum);
+          break;
+        case 40:
+          this.tabNum++;
+          this.tabNum = Math.min(this.possibleStations.length, this.tabNum);
+          break;
+      }
+
+      if (this.tabNum > 0){
+        let listItem = document.querySelector('#autocomplete ul').children.item(this.tabNum - 1);
+        listItem.focus();
+      } else {
+        const input = document.querySelector('input#station');
+        input.focus();
+      }
+
+    } else {
+      const input = document.querySelector('input#station');
+      input.focus();
+    }
+
   }
 
 }

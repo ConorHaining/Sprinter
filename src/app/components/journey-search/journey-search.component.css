@@ -14,3 +14,28 @@
     flex-shrink: 4;
     width: 100%;
 }
+
+#autocomplete{
+  width: 100%;
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+#autocomplete ul{
+  list-style-type: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+#autocomplete li{
+  background: #f0f0f0;
+  width: 100%;
+  padding: 10px 30px;
+  border-bottom: 1px solid #dddddd;
+}
+#autocomplete li:hover,
+#autocomplete li:focus{
+  background: #dddddd;
+}

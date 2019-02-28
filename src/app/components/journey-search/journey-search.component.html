@@ -1,8 +1,15 @@
 <main role="main">
-  <form name="form" #journeySearch="ngForm" novalidate>
-    <div class="row">
-      <label for="station">Departing from: </label>
-      <input type="text" id="station" name="station" [(ngModel)]="search.station">
+  <form name="form" #journeySearch="ngForm" (ngSubmit)="onSearch()">
+    <div (keydown)="onKeyDown($event)">
+      <div class="row">
+        <label for="station">Departing from: </label>
+        <input required tabindex="1" type="text" id="station" name="station" [ngModel]="search.station.name" [value]="search.station.name" (input)="onKeyUp($event)">
+      </div>
+      <div class="row" id="autocomplete">
+        <ul #autoCompleteList>
+          <li *ngFor="let item of possibleStations; index as i" tabindex="{{i + 1}}" [attr.data-station]="item.toString()" (click)="onStationSelect($event)">{{item.name}}</li>
+        </ul>
+      </div>
     </div>
     <div class="row">
       <label for="time">Time</label>
