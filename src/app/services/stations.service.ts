@@ -22,23 +22,8 @@ export class StationsService {
               element.location.longitude
             )
           );
-      console.log(station.constructor.name);
       this.stations.push(station);
     });
-
-    this.stations[0].toString();
-
-    // .forEach(element => {
-    //   let station = new Station(
-    //     element.name,
-    //     element.crs,
-    //     new LatLng(
-    //       element.location.latitude,
-    //       element.location.longitude
-    //     )
-    //   );
-    //   this.stations.push(station);
-    // });
   }
 
   findByName(name: string): Station[]{
