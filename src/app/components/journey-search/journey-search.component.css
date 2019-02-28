@@ -39,3 +39,6 @@
 #autocomplete li:focus{
   background: #dddddd;
 }
+#autocompleteDetails{
+  display: none;
+}
