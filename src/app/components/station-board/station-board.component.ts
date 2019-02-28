@@ -16,7 +16,7 @@ export class StationBoardComponent implements OnInit {
   @Output() loading = new EventEmitter<boolean>();
   _loading: boolean;
 
-  station: Station = new Station(null, null, null);
+  station: Station = new Station('A station', 'ABC', null);
 
   crs: string;
   direction: string;
@@ -47,7 +47,7 @@ export class StationBoardComponent implements OnInit {
       this.station = this.stationService.getByCrs(this.crs);
 
       this.triggerLoading(true);
-      setTimeout(() => this.triggerLoading(false), 3000);
+      setTimeout(() => {this.triggerLoading(false);}, 3000);
 
       if (this.direction === 'departures') {
         this.notion = 'to';
@@ -64,8 +64,8 @@ export class StationBoardComponent implements OnInit {
             console.error(err);
           });
 
-    });
+        });
 
-  }
+      }
 
 }

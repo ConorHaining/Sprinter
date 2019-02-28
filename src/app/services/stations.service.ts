@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Station } from '../models/Station';
 import { LatLng } from '../models/LatLng';
+import StationJSON from '../../assets/stations.json';
 
 @Injectable({
   providedIn: 'root'
@@ -11,22 +12,33 @@ export class StationsService {
 
   stations: Station[] = [];
 
-  constructor(private http: HttpClient) {}
-
-  loadStations() {
-    if(this.stations.length === 0){
-      this.http.get('assets/stations.json')
-      .subscribe(stations => {
-        Object.values(stations).forEach(station => {
-          let s = new Station(
-            station.name,
-            station.crs,
-            new LatLng(station.latlng.latitude, station.latlng.longitude)
+  constructor(private http: HttpClient) {
+    StationJSON.forEach(element => {
+      let station = new Station(
+            element.name,
+            element.crs,
+            new LatLng(
+              element.location.latitude,
+              element.location.longitude
             )
-          this.stations.push(s);
-        });
-      });
-    }
+          );
+      console.log(station.constructor.name);
+      this.stations.push(station);
+    });
+
+    this.stations[0].toString();
+
+    // .forEach(element => {
+    //   let station = new Station(
+    //     element.name,
+    //     element.crs,
+    //     new LatLng(
+    //       element.location.latitude,
+    //       element.location.longitude
+    //     )
+    //   );
+    //   this.stations.push(station);
+    // });
   }
 
   findByName(name: string): Station[]{

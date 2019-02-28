@@ -22,9 +22,7 @@ export class JourneySearchComponent implements OnInit {
 
   constructor(private station: StationsService, private router: Router) {}
 
-  ngOnInit() {
-    this.station.loadStations();
-  }
+  ngOnInit() { }
 
   private constructCurrentTime() {
     const now = new Date();

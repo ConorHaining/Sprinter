@@ -7,7 +7,7 @@
       </div>
       <div class="row" id="autocomplete">
         <ul #autoCompleteList>
-          <li *ngFor="let item of possibleStations; index as i" tabindex="{{i + 1}}" [attr.data-station]="item.toString()" (click)="onStationSelect($event)">{{item.name}}</li>
+          <li *ngFor="let item of possibleStations; index as i" tabindex="{{i + 1}}" [attr.data-station]="item" (click)="onStationSelect($event)">{{item.name}}</li>
         </ul>
       </div>
     </div>
