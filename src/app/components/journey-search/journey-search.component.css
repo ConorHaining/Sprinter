@@ -36,6 +36,9 @@
   padding: 10px 30px;
   border-bottom: 1px solid #dddddd;
 }
+#autocomplete span.crs{
+  font-weight: bold;
+}
 #autocomplete li:hover,
 #autocomplete li:focus{
   background: #dddddd;
