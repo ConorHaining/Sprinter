@@ -26,10 +26,10 @@ export class StationsService {
     });
   }
 
-  findByName(name: string): Station[]{
+  findByNameOrCrs(name: string): Station[]{
     let possibleStations: Station[] = [];
     possibleStations = this.stations.filter(station => {
-      return station.name.toLowerCase().includes(name.toLowerCase());
+      return station.name.toLowerCase().includes(name.toLowerCase()) || station.crs.toLowerCase().includes(name.toLowerCase());
     });
 
     return possibleStations.splice(0, 8);

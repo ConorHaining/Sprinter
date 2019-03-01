@@ -46,7 +46,7 @@ export class JourneySearchComponent implements OnInit {
     this.search.station.name = value;
     this.tabNum =  0;
     if (value.length > 2){
-      this.possibleStations = this.station.findByName(value);
+      this.possibleStations = this.station.findByNameOrCrs(value);
     } else {
       this.possibleStations = [];
     }
