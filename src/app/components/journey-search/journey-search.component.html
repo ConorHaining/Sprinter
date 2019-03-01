@@ -3,7 +3,7 @@
     <div (keydown)="onKeyDown($event)">
       <div class="row">
         <label for="station">Departing from: </label>
-        <input required tabindex="1" aria-autocomplete="both" aria-owns="autoCompleteList" aria-describedby="autocompleteDetails" [attr.aria-expanded]="possibleStations.length !== 0" autocomplete="false" type="text" id="station" name="station" [ngModel]="search.station.name" [value]="search.station.name" (input)="onKeyUp($event)">
+        <input required tabindex="1" aria-autocomplete="both" aria-owns="autoCompleteList" aria-describedby="autocompleteDetails" [attr.aria-expanded]="possibleStations.length !== 0" autocomplete="off" type="text" id="station" name="station" [ngModel]="search.station.name" [value]="search.station.name" (input)="onKeyUp($event)">
         <span id="autocompleteDetails">When autocomplete results are available use up and down arrows to review and enter to select.</span>
       </div>
       <div class="row" id="autocomplete">
