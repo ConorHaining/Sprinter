@@ -1,6 +1,7 @@
-<main role="main">
-  <form name="form" #journeySearch="ngForm" (ngSubmit)="onSearch()">
-    <div (keydown)="onKeyDown($event)">
+<main role="main" aria-label="Journey Search">
+  <form name="form" #journeySearch="ngForm" (ngSubmit)="onSearch()" aria-describedby="searchDetails">
+    <details id="searchDetails">This form allows you to search for joruneys departing from any station at any time. The default 'time' and 'date' fields are set to right now.</details>
+    <span (keydown)="onKeyDown($event)">
       <div class="row">
         <label for="station">Departing from: </label>
         <input required tabindex="1" aria-autocomplete="both" aria-owns="autoCompleteList" aria-describedby="autocompleteDetails" [attr.aria-expanded]="possibleStations.length !== 0" autocomplete="off" type="text" id="station" name="station" [ngModel]="search.station.name" [value]="search.station.name" (input)="onKeyUp($event)">
@@ -11,7 +12,7 @@
           <li role="option" *ngFor="let item of possibleStations; index as i" tabindex="{{i + 1}}" [attr.data-station]="item" (click)="onStationSelect($event)"><span class="crs">[{{item.crs}}]</span> {{item.name}}</li>
         </ul>
       </div>
-    </div>
+    </span>
     <div class="row">
       <label for="time">Time</label>
       <input type="time" id="time" name="time" [(ngModel)]="search.time">

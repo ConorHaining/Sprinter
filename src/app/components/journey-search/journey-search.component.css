@@ -15,7 +15,9 @@
     flex-shrink: 4;
     width: 100%;
 }
-
+form details{
+  display: none;
+}
 #autocomplete{
   width: 100%;
   position: absolute;
