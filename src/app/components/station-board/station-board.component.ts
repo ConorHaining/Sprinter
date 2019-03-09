@@ -5,6 +5,8 @@ import { StationBoardService } from '../../services/station-board.service';
 import { StationsService } from 'src/app/services/stations.service';
 import { Station } from 'src/app/models/Station';
 
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-station-board',
   templateUrl: './station-board.component.html',
@@ -45,9 +47,8 @@ export class StationBoardComponent implements OnInit {
       this.crs = params['crs'];
       this.direction = params['direction'];
       this.station = this.stationService.getByCrs(this.crs);
-
+      console.log(environment);
       this.triggerLoading(true);
-      setTimeout(() => {this.triggerLoading(false);}, 3000);
 
       if (this.direction === 'departures') {
         this.notion = 'to';
@@ -58,7 +59,9 @@ export class StationBoardComponent implements OnInit {
       this.board.getStationBoard(this.crs, this.direction)
         .subscribe(
           (board: BoardItem[]) => {
+            this.triggerLoading(false);
             console.log(board);
+            this.stationBoard = board;
           },
           (err) => {
             console.error(err);

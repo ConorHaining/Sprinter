@@ -9,7 +9,7 @@
     <tbody>
       <tr href="#" role="link" [routerLink]="['/train', item.uid, year, month, day]" *ngFor="let item of stationBoard; index as i" [class.cancelled]="item.cancelled" tabindex="{{i + 1}}">
           <td class="time">
-            <span *ngIf="item.cancelled">Cancelled</span>
+            <span *ngIf="item.isCancelled">Cancelled</span>
             <div *ngIf="item.isLate"><span>{{item.predictedTime}}</span></div>
             <div *ngIf="!item.isLate"><span>{{item.publicTime}}</span></div>
             <del *ngIf="item.isLate"><span>{{item.publicTime}}</span></del>
@@ -19,7 +19,7 @@
           </td>
           <td class="location">
             <div><span>{{item.location}}</span></div>
-            <small *ngIf="item.isBus"><span>{{item.busType}}</span></small>
+            <small *ngIf="item.isBus"><span>XXXXXX</span></small>
           </td>
           <td class="operator"><span>{{item.operator}}</span></td>
           <td class="platform" *ngIf="item.isBus"><span>BUS</span></td>
