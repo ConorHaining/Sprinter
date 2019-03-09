@@ -13,6 +13,7 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { HttpClientModule } from '@angular/common/http';
 import { JourneyPageComponent } from './pages/journey-page/journey-page.component';
 import { JourneyComponent } from './components/journey/journey.component';
+import { OperatorPipe } from './pipes/operator.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { JourneyComponent } from './components/journey/journey.component';
     JourneySearchPageComponent,
     NotFoundPageComponent,
     JourneyPageComponent,
-    JourneyComponent
+    JourneyComponent,
+    OperatorPipe
   ],
   imports: [
     BrowserModule,
