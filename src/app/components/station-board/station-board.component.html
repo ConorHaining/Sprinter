@@ -2,15 +2,17 @@
   <header>
     <h2>{{station.name}}</h2>
     <h6>Live {{direction | titlecase}}</h6>
-    <a href="#" [class.active]="direction == 'departures'" [routerLink]="['/station', crs, 'departures']">Departures</a>
-    <a href="#" [class.active]="direction == 'arrivals'" [routerLink]="['/station', crs, 'arrivals']">Arrivals</a>
+    <a href="#" *ngIf="when != undefined" [class.active]="direction == 'departures'" [routerLink]="['/station', crs, 'departures', when.year, when.month, when.day, when.time]">Departures</a>
+    <a href="#" *ngIf="when == undefined" [class.active]="direction == 'departures'" [routerLink]="['/station', crs, 'departures']">Departures</a>
+    <a href="#" *ngIf="when != undefined" [class.active]="direction == 'arrivals'" [routerLink]="['/station', crs, 'arrivals', when.year, when.month, when.day, when.time]">Arrivals</a>
+    <a href="#" *ngIf="when == undefined" [class.active]="direction == 'arrivals'" [routerLink]="['/station', crs, 'arrivals']">Arrivals</a>
   </header>
   <table *ngIf="stationBoard.length > 0" tabindex="0" [class.loading]="_loading">
     <tbody>
-      <tr href="#" role="link" [routerLink]="['/train', item.uid, year, month, day]" *ngFor="let item of stationBoard; index as i" [class.cancelled]="item.isCancelled" tabindex="{{i + 1}}">
+      <tr href="#" role="link" [routerLink]="['/train', item.uid, when.year, when.month, when.day]" preserve *ngFor="let item of stationBoard; index as i" [class.cancelled]="item.isCancelled" tabindex="{{i + 1}}">
           <td class="time">
             <span *ngIf="item.isCancelled">Cancelled</span>
-            <div *ngIf="item.isLate"><span>{{item.predictedTime}}</span></div>
+            <div *ngIf="item.isLate"><span>{{item.predictedTime}}{{item.actualTime}}</span></div>
             <div *ngIf="!item.isLate"><span>{{item.publicTime}}</span></div>
             <del *ngIf="item.isLate"><span>{{item.publicTime}}</span></del>
           </td>

@@ -3,14 +3,14 @@ import { DateTime } from 'luxon';
 
 export class LocationRecord {
   constructor(
-    station: Station,
-    platform: string,
-    publicArrival: string,
-    publicDeparture: string,
-    actualArrival: string,
-    actualDeprature: string,
-    predictedArrival: string,
-    predictedDeparture: string,
+    station?: Station,
+    platform?: string,
+    publicArrival?: string,
+    publicDeparture?: string,
+    actualArrival?: string,
+    actualDeprature?: string,
+    predictedArrival?: string,
+    predictedDeparture?: string,
   ) {
     this.station = station;
     this.platform = platform;
@@ -51,8 +51,8 @@ export class LocationRecord {
   }
 
   private findRealtimeDiff(): number {
-    const timetable = DateTime.fromISO(this.publicDeparture);
-    const realtime = DateTime.fromISO(this.realtimeDeparture);
+    const timetable = DateTime.fromISO(this.publicTime);
+    const realtime = DateTime.fromISO(this.actualTime);
 
     return timetable.diff(realtime).as('minutes');
   }
@@ -74,10 +74,33 @@ export class LocationRecord {
       return `${diff}m early`;
     } else if(this.isLate) {
       return `${Math.abs(diff)}m late`;
-    } else {
+    } else if (diff === 0) {
       return 'On Time';
     }
   }
 
+  get publicTime() {
+    if(this.publicArrival) {
+      return this.publicArrival;
+    } else if (this.publicDeparture) {
+      return this.publicDeparture;
+    } else {
+      return undefined;
+    }
+  }
+
+  get actualTime() {
+    if(this.actualArrival) {
+      return this.actualArrival;
+    } else if (this.actualDeparture) {
+      return this.actualDeparture;
+    } else {
+      return undefined;
+    }
+  }
+
+  get routerTime() {
+    return this.publicTime.substring(0, 2) + this.publicTime.substring(3, 5);
+  }
 
 }

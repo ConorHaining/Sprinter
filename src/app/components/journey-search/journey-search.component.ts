@@ -62,7 +62,14 @@ export class JourneySearchComponent implements OnInit {
 
     if(this.search.station.crs) {
       console.log(this.search);
-      this.router.navigate(['/station', this.search.station.crs, 'departures']);
+
+      if(this.search.date === this.constructCurrentDate() && this.search.time === this.constructCurrentTime()) {
+        this.router.navigate(['/station', this.search.station.crs, 'departures']);
+      } else {
+
+        // this.router.navigate(['/station', this.search.station.crs, 'departures', year, month, date, time]);
+      }
+
     } else {
       console.error('Invalid input');
     }

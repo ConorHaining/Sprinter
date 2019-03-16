@@ -6,6 +6,7 @@ import { StationsService } from 'src/app/services/stations.service';
 import { Station } from 'src/app/models/Station';
 
 import { environment } from 'src/environments/environment';
+import { When } from 'src/app/models/When';
 
 @Component({
   selector: 'app-station-board',
@@ -22,10 +23,8 @@ export class StationBoardComponent implements OnInit {
 
   crs: string;
   direction: string;
-  year: string = '2019';
-  month: string = '02';
-  day: string = '25';
-  time: string = '15:15';
+
+  when: When;
 
   notion: string;
 
@@ -47,6 +46,9 @@ export class StationBoardComponent implements OnInit {
       this.crs = params['crs'];
       this.direction = params['direction'];
       this.station = this.stationService.getByCrs(this.crs);
+
+      this.when = new When(params.year, params.month, params.day, params.time);
+
       console.log(environment);
       this.triggerLoading(true);
 
@@ -56,7 +58,7 @@ export class StationBoardComponent implements OnInit {
         this.notion = 'from';
       }
 
-      this.board.getStationBoard(this.crs, this.direction)
+      this.board.getStationBoard(this.crs, this.direction, this.when)
         .subscribe(
           (board: BoardItem[]) => {
             this.triggerLoading(false);
@@ -67,7 +69,15 @@ export class StationBoardComponent implements OnInit {
             console.error(err);
           });
 
-        });
+      if (!params.time){
+        const now = new Date();
+        this.when = new When(String(now.getFullYear()),
+                              String(now.getMonth() + 1).padStart(2, '0'),
+                              String(now.getDate()).padStart(2, '0'),
+                              String(now.getHours()).padStart(2, '0') + String(now.getMinutes()).padStart(2, '0'));
+      }
+
+      });
 
       }
 

@@ -21,6 +21,8 @@ export class BoardItem {
   origin: string;
   location: string;
 
+  isCancelled: boolean;
+
   publicDeparture: string;
   publicArrival: string;
   get publicTime() {
@@ -37,7 +39,7 @@ export class BoardItem {
   actualArrival: string;
   get actualTime() {
     if(this.actualArrival) {
-      return this.actualArrival.substring(0, 5)
+      return this.actualArrival.substring(0, 5);
     } else if (this.actualDeparture) {
       return this.actualDeparture.substring(0, 5);
     } else {
@@ -54,8 +56,6 @@ export class BoardItem {
       return (this.predictedDeparture) ? this.predictedDeparture : this.predictedArrival;
     }
   }
-
-  isCancelled: boolean = false;
 
   get isLate() {
     if((this.predictedTime === undefined && this.actualTime === undefined)){

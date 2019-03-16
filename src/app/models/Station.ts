@@ -8,9 +8,9 @@ export class Station{
   }
 
   constructor(
-    public name: string,
-    public crs: string,
-    public location: LatLng
+    public name?: string,
+    public crs?: string,
+    public location?: LatLng
   ) {}
 
   toString() {

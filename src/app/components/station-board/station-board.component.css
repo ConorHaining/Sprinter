@@ -56,6 +56,11 @@ tr{
 tr:nth-child(even) {
   background: #eee;
 }
+tr.cancelled{
+  background: #faeceb;
+  font-weight: bold;
+  color: #770000;
+}
 td{
     padding: 10px 5px;
 }
@@ -86,11 +91,7 @@ td del{
   font-size: 0.75em;
   margin-left: 1px;
 }
-a.cancelled{
-  background: #faeceb;
-  font-weight: bold;
-  color: #770000;
-}
+
 .loading td span{
   background: #e0e0e0;
   color: #e0e0e0;

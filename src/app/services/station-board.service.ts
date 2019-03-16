@@ -5,6 +5,7 @@ import { BusType } from '../models/BusType';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { When } from '../models/When';
 
 
 @Injectable({
@@ -35,9 +36,13 @@ export class StationBoardService {
     return board;
   }
 
-  getStationBoard(crs, direction): Observable<BoardItem[]> {
-    const url = `${environment.apiHost}/station/${crs}/${direction}`;
-    console.log(environment);
+  getStationBoard(crs, direction, when: When = null): Observable<BoardItem[]> {
+    let url;
+    if (when === null) {
+      url = `${environment.apiHost}/station/${crs}/${direction}`;
+    } else {
+      url = `${environment.apiHost}/station/${crs}/${direction}/${when.year}/${when.month}/${when.day}/${when.time}`;
+    }
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
@@ -67,9 +72,8 @@ export class StationBoardService {
               newBoard.publicArrival = item['public_arrival'];
               newBoard.actualArrival = item['actual_arrival'];
             }
-
+            newBoard.isCancelled = item['cancelled'];
             console.log(item);
-            console.log(newBoard);
 
             return newBoard;
           });

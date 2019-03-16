@@ -1,6 +1,6 @@
 <main>
   <header>
-      <h2>1916 Aberdeen to Edinburgh</h2>
+      <h2>{{schedule.departureTime}} {{schedule.origin}} to {{schedule.destination}}</h2>
       <h3>Scotrail Service</h3>
   </header>
   <section>
@@ -34,13 +34,15 @@
           [class.early]="record.isEarly"
           >
           <td class="progress" [class.origin]="isFirst" [class.destination]="isLast"></td>
-          <td class="location"><a href=""><span>{{record.station.name}}</span></a></td>
+          <td class="location">
+            <span *ngIf="record.station.crs === null">{{record.station.name}}</span>
+            <a *ngIf="record.station.crs !== null" [routerLink]="['/station', record.station.crs, 'departures', year, month, day, record.routerTime]"><span>{{record.station.name}}</span></a></td>
           <td><span>{{record.platform}}</span></td>
           <td class="border-left wwt"><span>{{record.publicArrival}}</span></td>
           <td class="wwt"><span>{{record.publicDeparture}}</span></td>
           <td class="border-left realtime"><span [class.calledAt]="record.actualArrival !== null">{{record.realtimeArrival}}</span></td>
           <td class="realtime"><span [class.calledAt]="record.actualDeparture !== null">{{record.realtimeDeparture}}</span></td>
-          <td class="realtime"><span *ngIf="record.actualDeparture !== null" class="status">{{record.status}}</span></td>
+          <td class="realtime"><span *ngIf="record.actualTime !== null" class="status">{{record.status}}</span></td>
         </tr>
       </tbody>
     </table>

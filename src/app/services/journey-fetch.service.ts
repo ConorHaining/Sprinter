@@ -4,6 +4,7 @@ import { Schedule } from '../models/Schedule';
 import { LocationRecord } from '../models/LocationRecord';
 import { Station } from '../models/Station';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -36,10 +37,21 @@ export class JourneyFetchService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'my-auth-token'
+        'x-api-key': environment.apiKey
       })
     };
 
-    return this.http.get<Schedule>(url, httpOptions);
+    return this.http.get<Schedule>(url, httpOptions).pipe(
+      map(result => {
+        result = Object.assign(new Schedule(), result);
+        result.locations = result.locations.map(x => {
+          x.station = Object.assign(new Station(), x.station);
+          x = Object.assign(new LocationRecord(), x);
+          return x;
+        });
+
+        return result;
+      })
+    );
   }
 }
