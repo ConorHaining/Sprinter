@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Schedule } from '../models/Schedule';
-import { LocationRecords } from '../models/LocationRecords';
+import { LocationRecord } from '../models/LocationRecord';
+import { Station } from '../models/Station';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -13,17 +14,17 @@ export class JourneyFetchService {
   constructor(private http: HttpClient) { }
 
   getLoadingJourney(): Schedule{
-    let schedule = new Schedule();
+    const schedule = new Schedule();
     schedule.locations = [
-      new LocationRecords('Aberdeen', '3', null, '1916', null, '1916', true),
-      new LocationRecords('Stonehaven', '', '1931', '1935', '1931', '1935', true),
-      new LocationRecords('Montrose', '1', '1954', '1955', '1953', '1954', true),
-      new LocationRecords('Arbroath', '1', '2009', '2010', '2008', '2010', true),
-      new LocationRecords('Carnoustie', '1', '2016', '2017', '2017', '2023', true),
-      new LocationRecords('Dundee', '1', '2028', '2030', '2035', '2037', false),
-      new LocationRecords('Leuchars', '1', '2041', '2042', '2048', '2050', false),
-      new LocationRecords('Haymarket', '1', '2129', '2130', '2136', '2137', false),
-      new LocationRecords('Edinburgh', '1', '2136', null, '2141', null, false),
+      new LocationRecord(new Station('Aberdeen', null, null), '3', null, '19:16', null, '19:16', null, null),
+      new LocationRecord(new Station('Stonehaven', null, null), '', '19:31', '19:35', '19:31', '19:35', null, null),
+      new LocationRecord(new Station('Montrose', null, null), '1', '19:54', '19:55', '19:53', '19:54', null, null),
+      new LocationRecord(new Station('Arbroath', null, null), '1', '20:09', '20:10', '20:08', '20:10', null, null),
+      new LocationRecord(new Station('Carnoustie', null, null), '1', '20:16', '20:17', '20:17', '20:23', null, null),
+      new LocationRecord(new Station('Dundee', null, null), '1', '20:28', '20:30', null, null, '20:35', '20:37', ),
+      new LocationRecord(new Station('Leuchars', null, null), '1', '20:41', '20:42', null, null, '20:48', '20:50', ),
+      new LocationRecord(new Station('Haymarket', null, null), '1', '21:29', '21:30', null, null, '21:36', '21:37', ),
+      new LocationRecord(new Station('Edinburgh', null, null), '1', '21:36', null, null, null, '21:41', null, ),
     ];
 
     return schedule;
