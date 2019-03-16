@@ -8,6 +8,7 @@ import { JourneyPageComponent } from './pages/journey-page/journey-page.componen
 const routes: Routes = [
   {path: '', component: JourneySearchPageComponent},
   {path: 'station/:crs/:direction', component: StationBoardPageComponent},
+  {path: 'station/:crs/:direction/:year/:month/:day/:time', component: StationBoardPageComponent},
   {path: 'train/:uid/:year/:month/:day', component: JourneyPageComponent},
   {path: '**', component: NotFoundPageComponent},
 ];
