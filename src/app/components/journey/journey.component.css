@@ -70,7 +70,8 @@ td.border-none{
   border: none;
 }
 td.realtime{
-  font-weight: bold;
+  font-style: italic;
+  font-weight: normal;
 }
 .late .status{
   color: red;
@@ -78,9 +79,11 @@ td.realtime{
 .early .status{
   color: green;
 }
-.calledAt td.realtime{
-  font-weight: normal;
-  font-style: italic;
+.status{
+  font-style: normal;
+}
+.calledAt{
+  font-weight: bold;
 }
 @media only screen
 and (max-device-width : 599px) {
