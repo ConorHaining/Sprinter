@@ -8,6 +8,11 @@ header h3{
   margin: 5px;
   margin-top: 0;
 }
+.loading header h2,
+.loading header h3{
+  color: #a17007;
+  background: #a17007;
+}
 header a{
   margin: 5px;
   background: #efefef;

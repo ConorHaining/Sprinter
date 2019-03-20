@@ -1,4 +1,4 @@
-<main>
+<main [class.loading]="_loading">
   <header>
       <h2>{{schedule.departureTime}} {{schedule.origin}} to {{schedule.destination}}</h2>
       <h3>Scotrail Service</h3>
@@ -9,7 +9,7 @@
       <div class="intermediate"></div>
       <div class="destination"></div>
     </div>
-    <table [class.loading]="_loading">
+    <table>
       <thead>
         <tr>
           <td colspan="3" class="border-none"></td>
