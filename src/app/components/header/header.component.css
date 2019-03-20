@@ -21,6 +21,14 @@ animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 animation-iteration-count: infinite;
 animation-delay: 1s;
 }
+header .warning{
+  font-size: 0.8em;
+  text-align: center;
+  padding: 10px;
+  margin: 5px;
+  background: #ff9933;
+  font-weight: bold;
+}
 
 @keyframes loadingTrain {
 0% {
