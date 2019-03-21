@@ -1,8 +1,8 @@
 import { Station } from './Station';
+import { When } from './When';
 export class JourneySearchModel {
     constructor(
         public station: Station = null,
-        public time: string = null,
-        public date: string = null
+        public when: When = null
     ) {}
 }

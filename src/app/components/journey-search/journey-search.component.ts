@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { JourneySearchModel } from '../../models/JourneySearchModel';
 import { StationsService } from 'src/app/services/stations.service';
 import { Station } from 'src/app/models/Station';
+import { When } from 'src/app/models/When';
 
 @Component({
   selector: 'app-journey-search',
@@ -13,8 +14,7 @@ export class JourneySearchComponent implements OnInit {
 
   search: JourneySearchModel = new JourneySearchModel(
                                 new Station(null, null, null),
-                                this.constructCurrentTime(),
-                                this.constructCurrentDate()
+                                new When()
                                 );
 
   possibleStations: Station[] = [];
@@ -23,23 +23,6 @@ export class JourneySearchComponent implements OnInit {
   constructor(private station: StationsService, private router: Router) {}
 
   ngOnInit() { }
-
-  private constructCurrentTime() {
-    const now = new Date();
-    const hour = String(now.getHours()).padStart(2, '0');
-    const minute = String(now.getMinutes()).padStart(2, '0');
-
-    return `${hour}:${minute}`;
-  }
-
-  private constructCurrentDate() {
-    const now = new Date();
-    const date = String(now.getDate()).padStart(2, '0');
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const year = String(now.getFullYear()).padStart(4, '0');
-
-    return `${year}-${month}-${date}`;
-  }
 
   onKeyUp(event){
     const value = event.target.value;
@@ -61,13 +44,19 @@ export class JourneySearchComponent implements OnInit {
   onSearch() {
 
     if(this.search.station.crs) {
-      console.log(this.search);
-
-      if(this.search.date === this.constructCurrentDate() && this.search.time === this.constructCurrentTime()) {
+      console.info(`${this.search.when.dateString} | ${When.currentDateString} | ${this.search.when.dateString === When.currentDateString}`)
+      console.info(`${this.search.when.timeString} | ${When.currentTimeString} | ${this.search.when.timeString === When.currentTimeString}`)
+      if(this.search.when.dateString === When.currentDateString && this.search.when.timeString === When.currentTimeString) {
         this.router.navigate(['/station', this.search.station.crs, 'departures']);
       } else {
-
-        // this.router.navigate(['/station', this.search.station.crs, 'departures', year, month, date, time]);
+        console.info(this.search.when);
+        this.router.navigate(['/station',
+                          this.search.station.crs,
+                          'departures',
+                          this.search.when.year,
+                          this.search.when.month,
+                          this.search.when.date,
+                          this.search.when.timeStringURL]);
       }
 
     } else {

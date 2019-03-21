@@ -15,11 +15,11 @@
     </span>
     <div class="row">
       <label for="time">Time</label>
-      <input type="time" id="time" name="time" [(ngModel)]="search.time">
+      <input type="time" id="time" name="time" [(ngModel)]="search.when.timeString">
     </div>
     <div class="row">
       <label for="date">Date</label>
-      <input type="date" id="date" name="date" [(ngModel)]="search.date">
+      <input type="date" id="date" name="date" [(ngModel)]="search.when.dateString">
     </div>
     <div class="row">
       <input type="submit" value="Search">
