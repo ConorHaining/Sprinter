@@ -23,6 +23,7 @@ export class StationBoardService {
       new BoardItem('U12345', 'SR', 'Leuchers', '4'),
       new BoardItem('U12345', 'SR', 'Leuchers', '4'),
       new BoardItem('U12345', 'SR', 'Leuchers', '4'),
+      new BoardItem('U12345', 'SR', 'Leuchers', '4'),
       new BoardItem('U12345', 'SR', 'Glasgow Queen Street', '4'),
       new BoardItem('U12345', 'CS', 'London Euston', '4'),
     ];
@@ -38,10 +39,11 @@ export class StationBoardService {
 
   getStationBoard(crs, direction, when: When = null): Observable<BoardItem[]> {
     let url;
-    if (when === null) {
+    if (when.minute === undefined) {
       url = `${environment.apiHost}/station/${crs}/${direction}`;
     } else {
-      url = `${environment.apiHost}/station/${crs}/${direction}/${when.year}/${when.month}/${when.day}/${when.time}`;
+      console.log(when);
+      url = `${environment.apiHost}/station/${crs}/${direction}/${when.year}/${when.month}/${when.date}/${when.timeStringURL}`;
     }
     const httpOptions = {
       headers: new HttpHeaders({

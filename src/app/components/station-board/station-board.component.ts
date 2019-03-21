@@ -46,10 +46,12 @@ export class StationBoardComponent implements OnInit {
       this.crs = params['crs'];
       this.direction = params['direction'];
       this.station = this.stationService.getByCrs(this.crs);
+      if(params.time !== undefined){
+        this.when = new When(params.year, params.month, params.day, params.time.substring(0, 2), params.time.substring(2, 4));
+      } else {
+        this.when = new When();
+      }
 
-      this.when = new When(params.year, params.month, params.day, params.time);
-
-      console.log(environment);
       this.triggerLoading(true);
 
       if (this.direction === 'departures') {
@@ -68,14 +70,6 @@ export class StationBoardComponent implements OnInit {
           (err) => {
             console.error(err);
           });
-
-      if (!params.time){
-        const now = new Date();
-        this.when = new When(String(now.getFullYear()),
-                              String(now.getMonth() + 1).padStart(2, '0'),
-                              String(now.getDate()).padStart(2, '0'),
-                              String(now.getHours()).padStart(2, '0') + String(now.getMinutes()).padStart(2, '0'));
-      }
 
       });
 
