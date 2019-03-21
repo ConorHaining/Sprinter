@@ -37,16 +37,20 @@ export class LocationRecord {
   get realtimeArrival(): string {
     if(this.actualArrival){
       return this.actualArrival;
-    } else {
+    } else if (this.predictedArrival){
       return this.predictedArrival;
+    } else {
+      return this.publicArrival;
     }
   }
 
   get realtimeDeparture(): string {
     if(this.actualDeparture) {
       return this.actualDeparture;
-    } else {
+    } else if (this.predictedDeparture){
       return this.predictedDeparture;
+    } else {
+      return this.publicDeparture;
     }
   }
 
