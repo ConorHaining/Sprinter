@@ -21,11 +21,11 @@
           </td>
           <td class="location">
             <div><span>{{item.location}}</span></div>
-            <small *ngIf="item.isBus"><span>XXXXXX</span></small>
+            <small><span>{{item.suplementaryInfo}}</span></small>
           </td>
           <td class="operator"><span>{{item.operator | operator}}</span></td>
           <td class="platform" *ngIf="item.isBus"><span>BUS</span></td>
-          <td class="platform" *ngIf="!item.isBus"><span>Platform&nbsp;{{item.platform}}</span></td>
+          <td class="platform" *ngIf="!item.isBus && item.platform"><span>Platform&nbsp;{{item.platform}}</span></td>
         </tr>
     </tbody>
   </table>

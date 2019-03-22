@@ -71,6 +71,7 @@ td.direction{
 }
 td.location{
   font-weight: bold;
+  width: 60%;
 }
 td.operator{
   font-size: 0.6em;

@@ -16,7 +16,7 @@ export class BoardItem {
   uid: string;
   operator: string;
   platform: string;
-
+  category: string;
   destination: string;
   origin: string;
   location: string;
@@ -68,6 +68,37 @@ export class BoardItem {
   }
 
   get isBus() {
+    if (this.category === 'BR' || this.category === 'BS') {
+      return true;
+    }
     return false;
+  }
+
+  get suplementaryInfo(): string{
+    let category: string;
+    switch(this.category) {
+      case 'XX':
+        category = 'Express Passenger Service';
+        break;
+      case 'OO':
+        category = 'Ordinary Passenger Service';
+        break;
+      case 'OU':
+        category = 'Unadvertised Ordinary Passenger';
+        break;
+      case 'XZ':
+        category = 'Domestic Sleeper';
+        break;
+      case 'BR':
+        category = 'Bus Replacement Service';
+        break;
+      case 'BS':
+        category = 'Scheduled Bus Service';
+        break;
+      case 'SS':
+        category = 'Scheduled Ship Service';
+        break;
+    }
+    return category;
   }
 }
