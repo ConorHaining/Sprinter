@@ -1,7 +1,7 @@
 <main [class.loading]="_loading">
   <header>
       <h2>{{schedule.departureTime}} {{schedule.origin}} to {{schedule.destination}}</h2>
-      <h3>Scotrail Service</h3>
+      <h3>{{schedule.operator | operator}} Service</h3>
   </header>
   <section>
     <div id="progressMapPreload">
@@ -29,7 +29,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let record of schedule.locations; first as isFirst; last as isLast"
-
           [class.late]="record.isLate"
           [class.early]="record.isEarly"
           >
