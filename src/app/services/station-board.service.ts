@@ -64,6 +64,7 @@ export class StationBoardService {
             const platform = item.platform;
 
             let newBoard = new BoardItem(uid, operator, location, platform);
+            newBoard.category = item.category;
 
             if(item.destination) {
               newBoard.predictedDeparture = item['predicted_departure'];
