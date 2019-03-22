@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiHost: 'http://localhost:3000',
-  apiKey: null
+  apiHost: 'https://api.planrr.app',
+  apiKey: 'TWb0BIPBad85eTAB5etFh2zL5vnAsM9k6HQ4Kfa1'
 };

@@ -52,6 +52,7 @@ a:focus{
 }
 tr{
   cursor: pointer;
+  height: 50px;
 }
 tr:nth-child(even) {
   background: #eee;
