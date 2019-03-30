@@ -2,10 +2,10 @@ import { BusType } from './BusType';
 
 export class BoardItem {
   constructor(
-    uid: string,
-    operator: string,
-    location: string,
-    platform: string,
+    uid?: string,
+    operator?: string,
+    location?: string,
+    platform?: string,
   ) {
     this.uid = uid;
     this.operator = operator;
