@@ -1,6 +1,7 @@
 import { BusType } from './BusType';
 
 export class BoardItem {
+  // tslint:disable: variable-name
   constructor(
     uid?: string,
     operator?: string,
@@ -16,44 +17,43 @@ export class BoardItem {
   uid: string;
   operator: string;
   platform: string;
-  category: string;
   destination: string;
   origin: string;
   location: string;
-
+  category: string;
   isCancelled: boolean;
 
-  publicDeparture: string;
-  publicArrival: string;
+  public_arrival: string;
+  public_departure: string;
   get publicTime() {
-    if(this.publicArrival) {
-      return this.publicArrival.substring(0, 5)
-    } else if (this.publicDeparture) {
-      return this.publicDeparture.substring(0, 5);
+    if(this.public_arrival) {
+      return this.public_arrival.substring(0, 5)
+    } else if (this.public_departure) {
+      return this.public_departure.substring(0, 5);
     } else {
       return undefined;
     }
   }
 
-  actualDeparture: string;
-  actualArrival: string;
+  actual_arrival: string;
+  actual_departure: string;
   get actualTime() {
-    if(this.actualArrival) {
-      return this.actualArrival.substring(0, 5);
-    } else if (this.actualDeparture) {
-      return this.actualDeparture.substring(0, 5);
+    if(this.actual_arrival) {
+      return this.actual_arrival.substring(0, 5);
+    } else if (this.actual_departure) {
+      return this.actual_departure.substring(0, 5);
     } else {
       return undefined;
     }
   }
 
-  predictedDeparture: string;
-  predictedArrival: string;
+  predicted_departure: string;
+  predicted_arrival: string;
   get predictedTime() {
-    if(this.predictedDeparture === undefined && this.predictedArrival === undefined) {
+    if(this.predicted_departure === undefined && this.predicted_arrival === undefined) {
       return undefined;
     } else {
-      return (this.predictedDeparture) ? this.predictedDeparture : this.predictedArrival;
+      return (this.predicted_departure) ? this.predicted_departure : this.predicted_arrival;
     }
   }
 
@@ -68,14 +68,28 @@ export class BoardItem {
   }
 
   get isBus() {
-    if (this.category === 'BR' || this.category === 'BS') {
+    if (this.categoryDescription === 'BR' || this.categoryDescription === 'BS') {
       return true;
     }
     return false;
   }
 
   get suplementaryInfo(): string{
-    let category: string;
+    if (this.actualTime) {
+      if(this.actual_arrival) {
+        return `Arrived at ${this.actualTime}`;
+      } else if (this.actual_departure) {
+        return `Departed at ${this.actualTime}`;
+      }
+    } else if (this.isLate) {
+      return `Expected at ${this.predictedTime}`;
+    } else {
+      return this.categoryDescription;
+    }
+  }
+
+  get categoryDescription(): string{
+    let category;
     switch(this.category) {
       case 'XX':
         category = 'Express Passenger Service';

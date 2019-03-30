@@ -12,16 +12,14 @@
       <tr href="#" role="link" [routerLink]="['/train', item.uid, when.year, when.month, when.date]" preserve *ngFor="let item of stationBoard; index as i" [class.cancelled]="item.isCancelled" tabindex="{{i + 1}}">
           <td class="time">
             <span *ngIf="item.isCancelled">Cancelled</span>
-            <div *ngIf="item.isLate"><span>{{item.predictedTime}}{{item.actualTime}}</span></div>
-            <div *ngIf="!item.isLate"><span>{{item.publicTime}}</span></div>
-            <del *ngIf="item.isLate"><span>{{item.publicTime}}</span></del>
+            <div>{{item.publicTime}}</div>
           </td>
           <td class="direction">
             <span>{{notion}}</span>
           </td>
           <td class="location">
             <div><span>{{item.location}}</span></div>
-            <small><span>{{item.suplementaryInfo}}</span></small>
+            <small><span [class.bold]="item.isLate">{{item.suplementaryInfo}}</span></small>
           </td>
           <td class="operator"><span>{{item.operator | operator}}</span></td>
           <td class="platform" *ngIf="item.isBus"><span>BUS</span></td>

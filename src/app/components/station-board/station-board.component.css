@@ -73,6 +73,9 @@ td.location{
   font-weight: bold;
   width: 60%;
 }
+td.location span.bold{
+  font-weight: bold;
+}
 td.operator{
   font-size: 0.6em;
   text-align: right;

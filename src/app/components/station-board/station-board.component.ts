@@ -64,8 +64,8 @@ export class StationBoardComponent implements OnInit {
         .subscribe(
           (board: BoardItem[]) => {
             this.triggerLoading(false);
-            console.log(board);
             this.stationBoard = board;
+            console.log(this.stationBoard);
           },
           (err) => {
             console.error(err);
