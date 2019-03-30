@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { When } from '../models/When';
+import { Station } from '../models/Station';
 
 
 @Injectable({
@@ -54,34 +55,16 @@ export class StationBoardService {
 
     return this.http.get(url, httpOptions)
       .pipe(
-        map(res => {
-          const resArray = Object.entries(res) as unknown as BoardItem[];
-          const newBoard: BoardItem[] = resArray.map(item => {
-            item = item[1];
-            const uid = item.uid;
-            const operator = item.operator;
-            const location = (item.destination) ? item.destination : item.origin;
-            const platform = item.platform;
-
-            let newBoard = new BoardItem(uid, operator, location, platform);
-            newBoard.category = item.category;
-
-            if(item.destination) {
-              newBoard.predictedDeparture = item['predicted_departure'];
-              newBoard.publicDeparture = item['public_departure'];
-              newBoard.actualDeparture = item['actual_departure'];
-            } else if (item.origin) {
-              newBoard.predictedArrival = item['predicted_arrival'];
-              newBoard.publicArrival = item['public_arrival'];
-              newBoard.actualArrival = item['actual_arrival'];
-            }
-            newBoard.isCancelled = item['cancelled'];
-            console.log(item);
-
-            return newBoard;
+        map(result => {
+          let board = Object.values(result).map(boardItem => {
+            let newBoardItem;
+            newBoardItem = Object.assign(new BoardItem(), boardItem);
+            newBoardItem.location = (boardItem.origin) ?
+                                    boardItem.origin :
+                                    boardItem.destination;
+            return newBoardItem;
           });
-
-          return newBoard;
+          return board;
       })
     );
   }
