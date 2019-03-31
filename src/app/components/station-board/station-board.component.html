@@ -19,7 +19,7 @@
           </td>
           <td class="location">
             <div><span>{{item.location}}</span></div>
-            <small><span [class.bold]="item.isLate">{{item.suplementaryInfo}}</span></small>
+            <small><span [class.late]="item.isLate">{{item.suplementaryInfo}}</span></small>
           </td>
           <td class="operator"><span>{{item.operator | operator}}</span></td>
           <td class="platform" *ngIf="item.isBus"><span>BUS</span></td>
