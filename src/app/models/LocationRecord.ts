@@ -2,55 +2,56 @@ import { Station } from './Station';
 import { DateTime } from 'luxon';
 
 export class LocationRecord {
+  // tslint:disable: variable-name
   constructor(
     station?: Station,
     platform?: string,
-    publicArrival?: string,
-    publicDeparture?: string,
-    actualArrival?: string,
-    actualDeprature?: string,
-    predictedArrival?: string,
-    predictedDeparture?: string,
+    public_arrival?: string,
+    public_departure?: string,
+    actual_arrival?: string,
+    actual_departure?: string,
+    predicted_arrival?: string,
+    predicted_departure?: string,
   ) {
     this.station = station;
     this.platform = platform;
-    this.publicDeparture = publicDeparture;
-    this.publicArrival = publicArrival;
-    this.actualDeparture = actualDeprature;
-    this.actualArrival = actualArrival;
-    this.predictedDeparture = predictedDeparture;
-    this.predictedArrival = predictedArrival;
+    this.public_departure = public_departure;
+    this.public_arrival = public_arrival;
+    this.actual_departure = actual_departure;
+    this.actual_arrival = actual_arrival;
+    this.predicted_departure = predicted_departure;
+    this.predicted_arrival = predicted_arrival;
   }
 
   station: Station;
   platform: string;
 
-  publicDeparture: string;
-  publicArrival: string;
+  public_departure: string;
+  public_arrival: string;
 
-  actualDeparture: string;
-  actualArrival: string;
+  actual_departure: string;
+  actual_arrival: string;
 
-  predictedDeparture: string;
-  predictedArrival: string;
+  predicted_departure: string;
+  predicted_arrival: string;
 
   get realtimeArrival(): string {
-    if(this.actualArrival){
-      return this.actualArrival;
-    } else if (this.predictedArrival){
-      return this.predictedArrival;
+    if(this.actual_arrival){
+      return this.actual_arrival;
+    } else if (this.predicted_arrival){
+      return this.predicted_arrival;
     } else {
-      return this.publicArrival;
+      return this.public_arrival;
     }
   }
 
   get realtimeDeparture(): string {
-    if(this.actualDeparture) {
-      return this.actualDeparture;
-    } else if (this.predictedDeparture){
-      return this.predictedDeparture;
+    if(this.actual_departure) {
+      return this.actual_departure;
+    } else if (this.predicted_departure){
+      return this.predicted_departure;
     } else {
-      return this.publicDeparture;
+      return this.public_departure;
     }
   }
 
@@ -84,20 +85,20 @@ export class LocationRecord {
   }
 
   get publicTime() {
-    if(this.publicArrival) {
-      return this.publicArrival;
-    } else if (this.publicDeparture) {
-      return this.publicDeparture;
+    if(this.public_arrival) {
+      return this.public_arrival;
+    } else if (this.public_departure) {
+      return this.public_departure;
     } else {
       return undefined;
     }
   }
 
   get actualTime() {
-    if(this.actualArrival) {
-      return this.actualArrival;
-    } else if (this.actualDeparture) {
-      return this.actualDeparture;
+    if(this.actual_arrival) {
+      return this.actual_arrival;
+    } else if (this.actual_departure) {
+      return this.actual_departure;
     } else {
       return undefined;
     }

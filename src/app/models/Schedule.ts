@@ -15,6 +15,6 @@ export class Schedule{
 
   get departureTime(): string {
     const first = this.locations[0];
-    return first.publicDeparture;
+    return first.public_departure;
   }
 }

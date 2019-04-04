@@ -37,10 +37,10 @@
             <span *ngIf="record.station.crs === null">{{record.station.name}}</span>
             <a *ngIf="record.station.crs !== null" [routerLink]="['/station', record.station.crs, 'departures', year, month, day, record.routerTime]"><span>{{record.station.name}}</span></a></td>
           <td><span>{{record.platform}}</span></td>
-          <td class="border-left wwt"><span>{{record.publicArrival}}</span></td>
-          <td class="wwt"><span>{{record.publicDeparture}}</span></td>
-          <td class="border-left realtime"><span [class.calledAt]="record.actualArrival !== null">{{record.realtimeArrival}}</span></td>
-          <td class="realtime"><span [class.calledAt]="record.actualDeparture !== null">{{record.realtimeDeparture}}</span></td>
+          <td class="border-left wwt"><span>{{record.public_arrival}}</span></td>
+          <td class="wwt"><span>{{record.public_departure}}</span></td>
+          <td class="border-left realtime"><span [class.calledAt]="record.actual_arrival !== null">{{record.realtimeArrival}}</span></td>
+          <td class="realtime"><span [class.calledAt]="record.actual_departure !== null">{{record.realtimeDeparture}}</span></td>
           <td class="realtime"><span *ngIf="record.actualTime !== null" class="status">{{record.status}}</span></td>
         </tr>
       </tbody>
