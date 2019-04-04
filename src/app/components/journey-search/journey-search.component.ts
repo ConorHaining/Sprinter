@@ -44,12 +44,9 @@ export class JourneySearchComponent implements OnInit {
   onSearch() {
 
     if(this.search.station.crs) {
-      console.info(`${this.search.when.dateString} | ${When.currentDateString} | ${this.search.when.dateString === When.currentDateString}`)
-      console.info(`${this.search.when.timeString} | ${When.currentTimeString} | ${this.search.when.timeString === When.currentTimeString}`)
       if(this.search.when.dateString === When.currentDateString && this.search.when.timeString === When.currentTimeString) {
         this.router.navigate(['/station', this.search.station.crs, 'departures']);
       } else {
-        console.info(this.search.when);
         this.router.navigate(['/station',
                           this.search.station.crs,
                           'departures',

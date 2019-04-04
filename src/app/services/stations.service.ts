@@ -29,10 +29,17 @@ export class StationsService {
   findByNameOrCrs(name: string): Station[]{
     let possibleStations: Station[] = [];
     possibleStations = this.stations.filter(station => {
-      return station.name.toLowerCase().includes(name.toLowerCase()) || station.crs.toLowerCase().includes(name.toLowerCase());
+      return station.crs.toLowerCase().includes(name.toLowerCase()) || station.name.toLowerCase().includes(name.toLowerCase());
+    }).sort((a, b) => {
+      if(a.crs === name && b.crs !== name) {
+        return -1;
+      }
+      if(b.crs === name && a.crs !== name) {
+        return 1;
+      }
+      return 0;
     });
-
-    return possibleStations.splice(0, 8);
+    return possibleStations.slice(0, 8);
   }
 
   getByCrs(crs: string): Station{
