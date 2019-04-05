@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { JourneyPageComponent } from './pages/journey-page/journey-page.component';
 import { JourneyComponent } from './components/journey/journey.component';
 import { OperatorPipe } from './pipes/operator.pipe';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { OperatorPipe } from './pipes/operator.pipe';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]
