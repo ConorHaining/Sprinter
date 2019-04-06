@@ -8,6 +8,8 @@
         "files": [
           "/favicon.ico",
           "/index.html",
+          "/assets/stations.json",
+          "/assets/**",
           "/*.css",
           "/*.js"
         ]
@@ -18,10 +20,22 @@
       "updateMode": "prefetch",
       "resources": {
         "files": [
-          "/assets/**",
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
         ]
       }
     }
-  ]
+  ],
+  "dataGroups": [{
+    "name": "api",
+    "urls": [
+      "api.planrr.app/train"
+    ],
+    "cacheConfig": {
+      "strategy": "freshness",
+      "maxSize": 100,
+      "maxAge": "3d",
+      "timeout": "5s"
+    }
+  }
+]
 }
