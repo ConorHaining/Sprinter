@@ -39,8 +39,8 @@
           <td><span>{{record.platform}}</span></td>
           <td class="border-left wwt"><span>{{record.public_arrival}}</span></td>
           <td class="wwt"><span>{{record.public_departure}}</span></td>
-          <td class="border-left realtime"><span [class.calledAt]="record.actual_arrival !== null">{{record.realtimeArrival}}</span></td>
-          <td class="realtime"><span [class.calledAt]="record.actual_departure !== null">{{record.realtimeDeparture}}</span></td>
+          <td class="border-left realtime"><span [class.calledAt]="record.actual_arrival !== undefined">{{record.realtimeArrival}}</span></td>
+          <td class="realtime"><span [class.calledAt]="record.actual_departure !== undefined">{{record.realtimeDeparture}}</span></td>
           <td class="realtime"><span *ngIf="record.actualTime !== null" class="status">{{record.status}}</span></td>
         </tr>
       </tbody>
