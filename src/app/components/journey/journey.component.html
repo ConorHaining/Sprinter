@@ -9,6 +9,9 @@
       <div class="intermediate"></div>
       <div class="destination"></div>
     </div>
+    <div class="cancelledNotice" *ngIf="schedule.cancelled">
+      This service has been cancelled due to {{schedule.cancelCode | cancelCode}}. It was cancelled at {{schedule.cancelledAt.name}}.
+    </div>
     <table>
       <thead>
         <tr>
@@ -31,6 +34,7 @@
         <tr *ngFor="let record of schedule.locations; first as isFirst; last as isLast"
           [class.late]="record.isLate"
           [class.early]="record.isEarly"
+          [class.cancelled]="record.cancelled"
           >
           <td class="progress" [class.origin]="isFirst" [class.destination]="isLast"></td>
           <td class="location">

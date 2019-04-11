@@ -35,6 +35,8 @@ export class LocationRecord {
   predicted_departure: string;
   predicted_arrival: string;
 
+  cancelled: boolean;
+
   get realtimeArrival(): string {
     if(this.actual_arrival){
       return this.actual_arrival;
@@ -81,6 +83,8 @@ export class LocationRecord {
       return `${Math.abs(diff)}m late`;
     } else if (diff === 0) {
       return 'On Time';
+    } else if (this.cancelled) {
+      return 'CAN';
     }
   }
 

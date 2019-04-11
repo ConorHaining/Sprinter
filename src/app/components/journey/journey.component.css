@@ -84,12 +84,27 @@ td.realtime{
 .early .status{
   color: green;
 }
+.cancelled .status{
+  font-weight: bold;
+  color: #770000;
+}
 .status{
   font-style: normal;
 }
 .calledAt{
   font-weight: bold;
 }
+.cancelledNotice{
+  padding: 10px;
+  font-size: 0.8em;
+  text-align: center;
+  background: #faeceb;
+  font-weight: bold;
+  color: #770000;
+  border: 1px solid #770000;
+  margin: 5px;
+}
+
 @media only screen
 and (max-device-width : 599px) {
   .wwt{
