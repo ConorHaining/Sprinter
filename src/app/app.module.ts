@@ -16,6 +16,7 @@ import { JourneyComponent } from './components/journey/journey.component';
 import { OperatorPipe } from './pipes/operator.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { CancelCodePipe } from './pipes/cancel-code.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { environment } from '../environments/environment';
     NotFoundPageComponent,
     JourneyPageComponent,
     JourneyComponent,
-    OperatorPipe
+    OperatorPipe,
+    CancelCodePipe
   ],
   imports: [
     BrowserModule,

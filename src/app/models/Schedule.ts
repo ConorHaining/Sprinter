@@ -2,6 +2,7 @@ import { LocationRecord } from './LocationRecord';
 export class Schedule{
   locations: LocationRecord[];
   operator: string;
+  cancelled: boolean;
 
   get origin(): string {
     const first = this.locations[0];

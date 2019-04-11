@@ -1,4 +1,5 @@
 import { BusType } from './BusType';
+import { CancelCodePipe } from '../pipes/cancel-code.pipe';
 
 export class BoardItem {
   // tslint:disable: variable-name
@@ -21,7 +22,12 @@ export class BoardItem {
   origin: string;
   location: string;
   category: string;
-  isCancelled: boolean;
+  cancelled: boolean;
+  cancelCode: string;
+
+  get cancelReason(): string {
+    return new CancelCodePipe().transform(this.cancelCode);
+  }
 
   public_arrival: string;
   public_departure: string;
@@ -83,6 +89,8 @@ export class BoardItem {
       }
     } else if (this.isLate) {
       return `Expected at ${this.predictedTime}`;
+    } else if (this.cancelled) {
+      return `Due to ${this.cancelReason}`;
     } else {
       return this.categoryDescription;
     }

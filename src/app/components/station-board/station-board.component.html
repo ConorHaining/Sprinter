@@ -9,9 +9,9 @@
   </header>
   <table *ngIf="stationBoard.length > 0" tabindex="0" [class.loading]="_loading">
     <tbody>
-      <tr href="#" role="link" [routerLink]="['/train', item.uid, when.year, when.month, when.date]" preserve *ngFor="let item of stationBoard; index as i" [class.cancelled]="item.isCancelled" tabindex="{{i + 1}}">
+      <tr href="#" role="link" [routerLink]="['/train', item.uid, when.year, when.month, when.date]" preserve *ngFor="let item of stationBoard; index as i" [class.cancelled]="item.cancelled" tabindex="{{i + 1}}">
           <td class="time">
-            <span *ngIf="item.isCancelled">Cancelled</span>
+            <span *ngIf="item.cancelled">Cancelled</span>
             <div>{{item.publicTime}}</div>
           </td>
           <td class="direction">

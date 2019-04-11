@@ -2,11 +2,18 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// export const environment = {
+//   production: false,
+//   apiHost: 'http://localhost:3000',
+//   apiKey: 'd41d8cd98f00b204e9800998ecf8427e'
+// };
+
 export const environment = {
   production: false,
-  apiHost: 'http://localhost:3000',
-  apiKey: 'd41d8cd98f00b204e9800998ecf8427e'
+  apiHost: 'https://api.planrr.app',
+  apiKey: 'TWb0BIPBad85eTAB5etFh2zL5vnAsM9k6HQ4Kfa1'
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
