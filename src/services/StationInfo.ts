@@ -39,4 +39,10 @@ export class StationInfo {
         }).slice(0, 8);
     }
 
+    getStationByCrs(crs: string) {
+        return this.stations.find(station => {
+            return station.crs === crs;
+        });
+    }
+
 }
