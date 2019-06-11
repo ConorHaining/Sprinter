@@ -19,6 +19,9 @@ export class StationPicker extends LitElement {
   @property( { type : Array }  ) 
   stations: Array<Station> = this._stationInfo.stations.slice(0, 8);
 
+  @property( { type: Object, reflect: true } )
+  selectedStation: Station;
+
   toggleWindow(e?:Event) {
     if(this.showModal) {
       this.showModal = false;
@@ -29,8 +32,9 @@ export class StationPicker extends LitElement {
 
   selectStation(e: any) {
     this.toggleWindow();
-    const station = e.target.innerText;
-    this.shadowRoot.querySelector('input').value = station;
+    const station = JSON.parse(e.target.getAttribute('data-station')) as Station;
+    this.shadowRoot.querySelector('input').value = station.name;
+    this.selectedStation = station;
   }
 
   getCurrentLocation() {
@@ -105,8 +109,8 @@ export class StationPicker extends LitElement {
         <section>
           <ul>
             ${this.stations.map(station => {
-              return html`<li @click="${this.selectStation}" tabindex="-1">
-                            <span class="crs-code">[${station.crs}]</span> ${station.name} 
+              return html`<li @click="${this.selectStation}" tabindex="-1" data-station="${JSON.stringify(station)}">
+                            <span class="crs">[${station.crs}]</span> ${station.name} 
                             ${station.distance ? html`<span class="distance">${station.distance}km</span>`: ''}
                           </li>`})}
           </ul>
