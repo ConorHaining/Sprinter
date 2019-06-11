@@ -1,6 +1,7 @@
 import { LitElement, html, css, customElement, property } from 'lit-element';
 import { StationInfo } from '../services/StationInfo';
 import { Station } from 'models/Station';
+import { LatLng } from 'models/LatLng';
   
 @customElement('station-picker')
 export class StationPicker extends LitElement {
@@ -24,7 +25,6 @@ export class StationPicker extends LitElement {
 
   constructor() {
     super();
-
     if ('permissions' in navigator) {
       navigator.permissions.query({name: 'geolocation'}).then(status => {
         console.log(status.state)
@@ -47,7 +47,7 @@ export class StationPicker extends LitElement {
   selectStation(e: any) {
     this.toggleWindow();
     const station = JSON.parse(e.target.getAttribute('data-station')) as Station;
-    this.shadowRoot.querySelector('input').value = station.name;
+    (<HTMLInputElement>this.shadowRoot.querySelector('input.formField')).value = station.name;
     this.selectedStation = station;
   }
 
@@ -62,6 +62,13 @@ export class StationPicker extends LitElement {
       })
   }
 
+  textSearch(e: Event) {
+    const searchValue = (<HTMLInputElement>e.target).value;
+    (<HTMLInputElement>this.shadowRoot.querySelector('.modal-search')).value = searchValue;
+    console.log(searchValue)
+    this.stations = this._stationInfo.findByNameOrCrs(searchValue);
+  }
+
   static get styles() {
     return css`
     :host {
@@ -71,7 +78,7 @@ export class StationPicker extends LitElement {
       float: left;
       padding-top: 9px;
     }
-    input:not([type=submit]){
+    input.formField{
       float: right;
       height: 30px;
       width: 230px;
@@ -109,10 +116,9 @@ export class StationPicker extends LitElement {
   }
 
   render(){
-    console.log(this.stations)
     return html`
       <label for="${this.inputLabel.toLowerCase()}">${this.inputLabel}</label>
-      <input type="text" name="${this.inputLabel.toLowerCase()}" id="${this.inputLabel.toLowerCase()}" required @focus="${this.toggleWindow}">
+      <input type="text" name="${this.inputLabel.toLowerCase()}" id="${this.inputLabel.toLowerCase()}" class="formField" required @input="${this.textSearch}" @focus="${this.toggleWindow}">
 
       <div class="${this.showModal ? 'modal visible' : 'modal'}">
         <header>
@@ -121,6 +127,7 @@ export class StationPicker extends LitElement {
           <button @click="${this.getCurrentLocation}">Use Current Location</button>
         </header>
         <section>
+          <input type="search" class="modal-search" @input="${this.textSearch}">
           <ul>
             ${this.stations.map(station => {
               return html`<li @click="${this.selectStation}" tabindex="-1" data-station="${JSON.stringify(station)}">
