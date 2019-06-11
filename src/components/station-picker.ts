@@ -22,6 +22,20 @@ export class StationPicker extends LitElement {
   @property( { type: Object, reflect: true } )
   selectedStation: Station;
 
+  constructor() {
+    super();
+
+    if ('permissions' in navigator) {
+      navigator.permissions.query({name: 'geolocation'}).then(status => {
+        console.log(status.state)
+        console.log(status.state == 'prompt')
+        if (status.state == 'granted') {
+          this.getCurrentLocation();
+        }
+      });
+    }
+  }
+
   toggleWindow(e?:Event) {
     if(this.showModal) {
       this.showModal = false;
