@@ -33,6 +33,17 @@ export class StationPicker extends LitElement {
     this.shadowRoot.querySelector('input').value = station;
   }
 
+  getCurrentLocation() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.info(position)
+        this.stations = this._stationInfo.findClosest(position.coords);
+      },
+      (error) => {
+        console.error(error)
+      })
+  }
+
   static get styles() {
     return css`
     :host {
@@ -77,17 +88,6 @@ export class StationPicker extends LitElement {
       border-bottom: 1px solid black;
     }
     `;
-  }
-
-  getCurrentLocation() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        console.info(position)
-        this.stations = this._stationInfo.findClosest(position.coords);
-      },
-      (error) => {
-        console.error(error)
-      })
   }
 
   render(){
