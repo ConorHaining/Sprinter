@@ -1,4 +1,5 @@
 import './components/journey-search'
+import './components/station-picker'
 import {Router} from '@vaadin/router';
 
 const outlet = document.getElementsByTagName('main')[0];
