@@ -1,4 +1,4 @@
 export class LatLng{
-    lat: number;
-    long: number;
+    latitude: number;
+    longitude: number;
 }
