@@ -5,4 +5,5 @@ export class Station {
     name: string;
 
     location: LatLng;
+    distance?: number;
 }
