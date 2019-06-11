@@ -89,3 +89,4 @@ typings/
 
 # Build
 /dist
+dist/main.js
