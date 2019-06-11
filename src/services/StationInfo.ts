@@ -34,15 +34,33 @@ export class StationInfo {
             station.distance = Number(d.toFixed(2));
 
             return station;
-        }).sort(function(a, b) {
-            return a.distance - b.distance;
-        }).slice(0, 8);
+        }).sort(this.sortByDistance)
+        .slice(0, returnNumber);
     }
 
     getStationByCrs(crs: string) {
         return this.stations.find(station => {
             return station.crs === crs;
         });
+    }
+
+    findByNameOrCrs(name: string, returnNumber: number = 8) {
+        return this.stations.filter(station => {
+          return station.crs.toLowerCase().includes(name.toLowerCase()) || station.name.toLowerCase().includes(name.toLowerCase());
+        }).sort((a, b) => {
+          if(a.crs === name && b.crs !== name) {
+            return -1;
+          }
+          if(b.crs === name && a.crs !== name) {
+            return 1;
+          }
+          return 0;
+        }).sort(this.sortByDistance)
+        .slice(0, returnNumber);
+    }
+
+    private sortByDistance(a: Station, b: Station){
+        return a.distance - b.distance;
     }
 
 }
