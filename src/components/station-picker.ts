@@ -1,12 +1,11 @@
-/**
- * Import LitElement base class, html helper function,
- * and TypeScript decorators
- **/
 import { LitElement, html, css, customElement, property } from 'lit-element';
-// import Stations from '../assets/stations.json'
+import { StationInfo } from '../services/StationInfo';
+import { Station } from 'models/Station';
   
 @customElement('station-picker')
 export class StationPicker extends LitElement {
+
+  _stationInfo = new StationInfo();
 
   @property( { type : Boolean }  ) 
   showModal = false;
@@ -18,7 +17,7 @@ export class StationPicker extends LitElement {
   chosenStation = '';
 
   @property( { type : Array }  ) 
-  stations = '';
+  stations: Array<Station> = this._stationInfo.stations.slice(0, 8);
 
   toggleWindow(e?:Event) {
     if(this.showModal) {
@@ -78,9 +77,21 @@ export class StationPicker extends LitElement {
       border-bottom: 1px solid black;
     }
     `;
-  } 
+  }
+
+  getCurrentLocation() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.info(position)
+        this.stations = this._stationInfo.findClosest(position.coords);
+      },
+      (error) => {
+        console.error(error)
+      })
+  }
 
   render(){
+    console.log(this.stations)
     return html`
       <label for="${this.inputLabel.toLowerCase()}">${this.inputLabel}</label>
       <input type="text" name="${this.inputLabel.toLowerCase()}" id="${this.inputLabel.toLowerCase()}" required @focus="${this.toggleWindow}">
@@ -88,17 +99,16 @@ export class StationPicker extends LitElement {
       <div class="${this.showModal ? 'modal visible' : 'modal'}">
         <header>
           <button @click="${this.toggleWindow}">X</button>
+          <!-- TODO Conditional if supported-->
+          <button @click="${this.getCurrentLocation}">Use Current Location</button>
         </header>
         <section>
           <ul>
-            <li @click="${this.selectStation}" tabindex="-1"><span class="crs-code">[ABC]</span> Station 1</li>
-            <li @click="${this.selectStation}" tabindex="-1"><span class="crs-code">[ABC]</span> Station 2</li>
-            <li @click="${this.selectStation}" tabindex="-1"><span class="crs-code">[ABC]</span> Station 3</li>
-            <li @click="${this.selectStation}" tabindex="-1"><span class="crs-code">[ABC]</span> Station 4</li>
-            <li @click="${this.selectStation}" tabindex="-1"><span class="crs-code">[ABC]</span> Station 5</li>
-            <li @click="${this.selectStation}" tabindex="-1"><span class="crs-code">[ABC]</span> Station 6</li>
-            <li @click="${this.selectStation}" tabindex="-1"><span class="crs-code">[ABC]</span> Station 7</li>
-            <li @click="${this.selectStation}" tabindex="-1"><span class="crs-code">[ABC]</span> Station 8</li>
+            ${this.stations.map(station => {
+              return html`<li @click="${this.selectStation}" tabindex="-1">
+                            <span class="crs-code">[${station.crs}]</span> ${station.name} 
+                            ${station.distance ? html`<span class="distance">${station.distance}km</span>`: ''}
+                          </li>`})}
           </ul>
         </section>
       </div>
