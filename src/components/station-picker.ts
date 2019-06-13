@@ -1,7 +1,7 @@
 import { LitElement, html, css, customElement, property } from 'lit-element';
 import { StationInfo } from '../services/StationInfo';
 import { Station } from 'models/Station';
-import { LatLng } from 'models/LatLng';
+import {classMap} from 'lit-html/directives/class-map.js';
   
 @customElement('station-picker')
 export class StationPicker extends LitElement {
@@ -119,8 +119,7 @@ export class StationPicker extends LitElement {
     return html`
       <label for="${this.inputLabel.toLowerCase()}">${this.inputLabel}</label>
       <input type="text" name="${this.inputLabel.toLowerCase()}" id="${this.inputLabel.toLowerCase()}" class="formField" required @input="${this.textSearch}" @focus="${this.toggleWindow}">
-
-      <div class="${this.showModal ? 'modal visible' : 'modal'}">
+      <div class="${classMap({modal: true, visible: this.showModal})}">
         <header>
           <button @click="${this.toggleWindow}">X</button>
           <!-- TODO Conditional if supported-->
