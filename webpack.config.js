@@ -1,4 +1,5 @@
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -22,4 +23,9 @@ module.exports = {
     devServer: {
         contentBase: './dist'
     },
+    plugins: [
+        new CopyPlugin([
+          { from: 'src/index.html', to: 'index.html' },
+        ]),
+      ],
 };
